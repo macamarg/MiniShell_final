@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:03:45 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/07 12:03:45 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/19 12:43:26 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 /*
  * exit the shell
- if numeric parameter - exit with that code
+ * if numeric parameter - exit with that code
  */
 
-int ft_is_number(char *str)
+int	ft_is_number(char *str)
 {
 	int i;
 
@@ -31,8 +31,15 @@ int ft_is_number(char *str)
 	return (1);
 }
 
- int ft_exit(t_command *cmd, t_minishell *master)
- {
+int	change_range(int status)
+{
+	while (status > 255)
+		status -= 255;
+	return (status);
+}
+
+int ft_exit(t_command *cmd, t_minishell *master)
+{
 	int	status;
 
 	if (cmd->cmd[1])
@@ -45,6 +52,8 @@ int ft_is_number(char *str)
 		if (ft_is_number(cmd->cmd[1]))
 		{
 			status = ft_atoi(cmd->cmd[1]);
+			status = change_range(status);
+			printf("exit\n");
 			ft_clean_ms(master);
 			exit(status);
 		}
@@ -58,7 +67,6 @@ int ft_is_number(char *str)
 			exit(2);
 		}
 	}
-	//ALTERAR SHEL LEVL
 	status = master->last_status;
 	ft_clean_ms(master);
 	exit(status);
