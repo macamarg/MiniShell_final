@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/22 15:02:38 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/19 11:50:35 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,37 @@
  * If no directory is specified, change to the user's home directory.
  * If the directory does not exist, display an error message.
  * If the directory is not accessible, display an error message.
- * If the directory is not a directory, display an error message.
- * If the directory is not readable, display an error message.
- * If the directory is not writable, display an error message.
- * If the directory is not executable, display an error message.
 
-    int chdir(const char *path);
+	int chdir(const char *path);
 	changes the current working directory of the calling
-       process to the directory specified in path.
+		process to the directory specified in path.
 	On success, zero is returned.  On error, -1 is returned, and
-       errno is set to indicate the error.
+		errno is set to indicate the error.
  */
 
-static int cd_home(t_minishell *master)
+static char	*find_home(t_minishell *master)
 {
-	int i;
-	char *path;
+	int		i;
+	char	*path;
 
 	i = -1;
 	path = NULL;
 	while (master->env[++i])
 	{
-		if (ft_strncmp(master->env[i], "HOME=", 5) == 0 && ft_strlen(master->env[i]) > 5)
+		if (ft_strlen(master->env[i]) > 5
+			&& ft_strncmp(master->env[i], "HOME=", 5) == 0)
 		{
 			path = ft_strdup(master->env[i] + 5);
 			break ;
 		}
 	}
+}
+
+static int	cd_home(t_minishell *master)
+{
+	char	*path;
+
+	path = find_home(master);
 	if (!path)
 	{
 		ft_putstr_fd("cd: HOME not set\n", 2);
@@ -59,6 +63,21 @@ static int cd_home(t_minishell *master)
 	return (master->last_status);
 }
 
+static int	check_cd_errors(t_command *cmd, t_minishell *master)
+{
+	if (!master || !master->env)
+	{
+		ft_putstr_fd("cd: environment not set\n", 2);
+		return (1);
+	}
+	if (cmd->cmd[1] && cmd->cmd[2])
+	{
+		ft_putstr_fd("cd: too many arguments\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_cd(t_command *cmd, t_minishell *master)
 {
 	char	*path;
@@ -66,22 +85,12 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 
 	path = NULL;
 	i = 0;
-	if (!master || !master->env)
-	{
-		ft_putstr_fd("cd: environment not set\n", 2);
-		master->last_status = 1;
+	if (check_cd_errors(cmd, master) == 1)
 		return (1);
-	}
 	if (cmd->cmd[1] == NULL)
 	{
 		cd_home(master);
-		return (master->last_status);
-	}
-	if (cmd->cmd[1] && cmd->cmd[2])
-	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
-		master->last_status = 1;
-		return (1);
+		return (0);
 	}
 	path = ft_strdup(cmd->cmd[1]);
 	if (!path)
@@ -90,8 +99,9 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 	{
 		ft_putstr_fd("cd: ", 2);
 		perror(path);
-		master->last_status = 1;
+		free(path);
+		return (1);
 	}
 	free(path);
-	return (master->last_status);
+	return (0);
 }

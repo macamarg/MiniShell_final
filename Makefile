@@ -23,7 +23,7 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/minishell_cpy_envp.c\
 	$(SRC_DIR)/minishell_exec.c\
 	$(SRC_DIR)/exec_get_path.c\
-	$(SRC_DIR)/exec_buitin.c\
+	$(SRC_DIR)/exec_builtin.c\
 	$(SRC_DIR)/builtin_pwd.c\
 	$(SRC_DIR)/builtin_echo.c\
 	$(SRC_DIR)/builtin_cd.c\
