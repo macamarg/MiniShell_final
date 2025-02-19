@@ -35,6 +35,7 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/sort_env.c\
 	$(SRC_DIR)/exec_other.c\
 	$(SRC_DIR)/exec_pipeline.c\
+	$(SRC_DIR)/shell_level.c\
 	$(SRC_DIR)/error_handling.c\
 	$(SRC_DIR)/minishell_clean.c\
 	$(SRC_DIR)/minishell_free.c\

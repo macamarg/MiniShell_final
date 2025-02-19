@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/19 10:40:24 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:06:18 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ char	*get_cmdpath(t_minishell *master, t_command *cmd);
 int		is_builtin(char *command);
 void	exec_cmd(t_minishell *master, t_command *cmd);
 void	exec_pipeline(t_minishell *master, t_command *cmd);
+void	add_shell_level(t_minishell *master);
 
 //builtin
 int		exec_builtin(t_command *cmd, t_minishell *master);
@@ -206,6 +207,7 @@ int 	ft_cd(t_command *cmd, t_minishell *master);
 int		ft_env(t_command *cmd, t_minishell *master);
 int		ft_unset(t_command *cmd, t_minishell *master);
 int		ft_export(t_command *cmd, t_minishell *master);
+void	ft_change_variable_value(t_minishell *master, char *var, int flag);
 int		ft_exit(t_command *cmd, t_minishell *master);
 void	print_sorted_env(t_minishell *master);
 void	*sort_env(t_minishell *master, char **env);

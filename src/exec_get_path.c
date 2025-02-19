@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:15:00 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/01/15 14:50:11 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:09:28 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static char	*absolute_path(char **cmd, t_minishell *master)
 	{
 		path = safe_malloc(ft_strlen(cmd[0]) + 1);
 		ft_strlcpy(path, cmd[0], ft_strlen(cmd[0]) + 1);
+		if(ft_strncmp(cmd[0], "./minishell", 11) == 0)
+			add_shell_level(master);
 		return (path);
 	}
 	perror(cmd[0]);

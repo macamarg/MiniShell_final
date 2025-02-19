@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:01:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/06 14:50:42 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:06:30 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int is_valid_variable(char *var)
 	return(1);
 }
 
-static void	ft_change_variable_value(t_minishell *master, char *var, int flag)
+void	ft_change_variable_value(t_minishell *master, char *var, int flag)
 {
 	t_env	*iter;
 	char	*new_var;
