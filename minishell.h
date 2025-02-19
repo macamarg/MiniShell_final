@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/12 14:28:10 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/02/19 10:40:24 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,12 @@ void	print_cmdlst(t_command *cmd_lst);
 char	*quotes_rm(t_token *iter);
 void	redir_handler(t_minishell *master);
 int		redir_heredoc(char *eof);
-char	*get_valueexp(char *token, t_minishell *master, int i, int n);
 char	**cmd_fill(t_token **token_lst, int count, int t_class);
+
+//expand
+char			*std_exp(char *tmp, t_minishell *master, int i);
+char			*get_valueexp(char *token, t_minishell *master, int i, int n);
+char			*collectprior(char *token, int i, int j);
 
 //redir
 void	ft_find_redir(t_minishell *master);
