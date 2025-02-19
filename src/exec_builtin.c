@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:19:04 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/02/19 11:33:07 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:06:31 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	exec_builtin(t_command *cmd, t_minishell *master)
 	if (ft_strncmp(cmd->cmd[0], "unset", 6) == 0)
 		ft_unset(cmd, master);
 	if (ft_strncmp(cmd->cmd[0], "env", 4) == 0)
-		ft_env(cmd, master);
+		result = ft_env(cmd, master);
 	if (ft_strncmp(cmd->cmd[0], "exit", 5) == 0)
 		ft_exit(cmd, master);
 	master->last_status = result;
