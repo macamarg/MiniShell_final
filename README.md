@@ -1,5 +1,5 @@
 # MiniShell
-miniShell from hell
+MiniShell from hell with lasers
 
 
 ## **Allowed Functions:**
