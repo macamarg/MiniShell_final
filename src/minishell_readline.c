@@ -29,10 +29,11 @@ void	ft_getprompt(t_minishell *master)
 {
 	while (1)
 	{
+		prompt_signals_init();
 		master->prompt = readline("shell> ");
 		if (!master->prompt)
 		{
-			printf("\n");
+			ft_putstr_fd("exit\n", 1);
 			break ;
 		}
 		else if (master->prompt && *master->prompt)

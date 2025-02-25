@@ -40,7 +40,9 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/minishell_clean.c\
 	$(SRC_DIR)/minishell_free.c\
 	$(SRC_DIR)/test.c\
-	$(SRC_DIR)/print_tokenlst.c
+	$(SRC_DIR)/print_tokenlst.c\
+	$(SRC_DIR)/minishell_signals.c\
+	$(SRC_DIR)/minishell_signhadle.c\
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

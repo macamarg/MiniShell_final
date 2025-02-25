@@ -150,6 +150,17 @@ typedef struct s_minishell
 //readline
 void	ft_getprompt(t_minishell *master);
 
+//signals
+void	prompt_signals_init(void);
+void	here_doc_signals_init(void);
+void	child_signals_init(void);
+void	ignore_signals_init(void);
+
+//signals handle
+void	here_handler(int signum);
+void	child_handler(int signum);
+void	sigint_handler(int signum);
+
 //parse
 void	ft_parseline(t_minishell *master);
 
