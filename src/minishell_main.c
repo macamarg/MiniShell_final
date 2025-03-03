@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:25 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/06 13:36:44 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:59:44 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	env_cpy(t_minishell *master, char **envp)
 {
-	int	i;
+	int		i;
 	t_env	*tmp;
 	t_env	*iter;
 
@@ -46,11 +46,11 @@ t_minishell	*mini_init(char **argv, char **envp)
 
 	master = mini_call();
 	master->envp = NULL;
-
 	env_cpy(master, envp);
 	master->export = NULL;
 	sort_env(master, master->env);
 	master->argv = argv;
+	get_local_directory(master);
 	//print_env(master->env);
 	master->last_status = 0;
 	return (master);

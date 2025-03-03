@@ -6,26 +6,27 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:19:58 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/02/19 11:10:13 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:01:07 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	find_shell_level (t_minishell *master)
+int	find_shell_level(t_minishell *master)
 {
 	int		shlvl;
 	t_env	*iter;
 
 	iter = master->envp;
-	while(iter!= NULL)
+	while (iter != NULL)
 	{
-		if(ft_strlen(iter->env_var) >= 6 && ft_strncmp("SHLVL=", iter->env_var, 6) == 0)
-			break;
+		if (ft_strlen(iter->env_var) >= 6
+			&& ft_strncmp("SHLVL=", iter->env_var, 6) == 0)
+			break ;
 		iter = iter->next;
 	}
 	shlvl = atoi(iter->env_var + 6);
-	return(shlvl);
+	return (shlvl);
 }
 
 void	add_shell_level(t_minishell *master)

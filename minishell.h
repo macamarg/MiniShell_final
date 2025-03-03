@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/19 11:39:38 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:11:36 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,21 +204,34 @@ void	print_envp(t_env *env);
 //exec
 void	mini_exec(t_minishell *master);
 char	*get_cmdpath(t_minishell *master, t_command *cmd);
+char	*ft_strjoin_free(char *s1, char const *s2);
 int		is_builtin(char *command);
 void	exec_cmd(t_minishell *master, t_command *cmd);
 void	exec_pipeline(t_minishell *master, t_command *cmd);
+void	close_pipe(int *fd);
+void		parent_cleanup(int *prev_read_fd, int *fd_pipe, t_command *start);
+void	handle_fd_first(t_minishell *master, t_command *start, int *fd_pipe,
+							int prev_read_fd);
+void	handle_fd_middle(t_minishell *master, t_command *start, int *fd_pipe,
+							int prev_read_fd);
+void	handle_fd_last(t_minishell *master, t_command *start, int *fd_pipe,
+							int prev_read_fd);
 void	add_shell_level(t_minishell *master);
 
 //builtin
 int		exec_builtin(t_command *cmd, t_minishell *master);
 int		exec_other(t_command *cmd, t_minishell *master);
 int		ft_echo(t_command *cmd);
-int		ft_pwd(t_command *cmd);
+int		ft_pwd(t_command *cmd, t_minishell *master);
+void	get_local_directory(t_minishell *master);
 int 	ft_cd(t_command *cmd, t_minishell *master);
 int		ft_env(t_command *cmd, t_minishell *master);
 int		ft_unset(t_command *cmd, t_minishell *master);
 int		ft_export(t_command *cmd, t_minishell *master);
 void	ft_change_variable_value(t_minishell *master, char *var, int flag);
+int		check_if_var_exist(t_minishell *master, char *var, int flag);
+void	ft_export_error(char *cmd, t_minishell *master);
+int		is_valid_variable(char *var);
 int		ft_exit(t_command *cmd, t_minishell *master);
 void	print_sorted_env(t_minishell *master);
 void	*sort_env(t_minishell *master, char **env);

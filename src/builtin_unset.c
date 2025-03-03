@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:11:26 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/06 14:57:02 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:58:13 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * abort.
 */
 
-static void	remove_env_node(t_minishell *master, t_env *node, int env_flag)
+t_env	*set_iter(t_minishell *master, int env_flag)
 {
 	t_env	*iter;
 
@@ -27,20 +27,30 @@ static void	remove_env_node(t_minishell *master, t_env *node, int env_flag)
 		iter = master->envp;
 	else
 		iter = master->export;
+	return (iter);
+}
+
+static void	remove_first_node(t_minishell *master, t_env *node, int env_flag)
+{
+	if (env_flag)
+		master->envp = node->next;
+	else
+		master->export = node->next;
+	free(node->env_var);
+	free(node);
+}
+
+static void	remove_env_node(t_minishell *master, t_env *node, int env_flag)
+{
+	t_env	*iter;
+
+	iter = set_iter(master, env_flag);
 	if (!iter || !node)
-		return;
+		return ;
 	if (iter == node)
 	{
-		if (iter == node)
-		{
-			if (env_flag)
-				master->envp = node->next;
-			else
-				master->export = node->next;
-			free(node->env_var);
-			free(node);
-			return;
-		}
+		remove_first_node(master, node, env_flag);
+		return ;
 	}
 	while (iter && iter->next)
 	{
@@ -49,62 +59,51 @@ static void	remove_env_node(t_minishell *master, t_env *node, int env_flag)
 			iter->next = node->next;
 			free(node->env_var);
 			free(node);
-			return;
+			return ;
 		}
 		iter = iter->next;
 	}
 }
 
-t_env	*check_if_exists(char *cmd, t_minishell *master, int env_flag)
+t_env	*find_node(char *cmd, t_minishell *master, int env_flag)
 {
-	int 	h;
+	int		h;
 	int		len_cmd;
 	bool	equal_flag;
 	t_env	*iter;
 
-	if (env_flag == true)
-		iter = master->envp;
-	else
-		iter = master->export;
+	iter = set_iter(master, env_flag);
 	len_cmd = ft_strlen(cmd);
-	equal_flag = false;
+	equal_flag = (ft_strnstr(cmd, "=", len_cmd) != NULL);
 	while (iter)
 	{
 		h = 0;
-		if (ft_strnstr(cmd, "=", len_cmd))
-			equal_flag = true;
-		if (equal_flag)
-		{
-			if (ft_strlen(iter->env_var) == len_cmd && ft_strncmp(iter->env_var, cmd, len_cmd + 1) == 0)
-				return (iter);
-		}
-		else
-		{
-			while (iter->env_var[h] != '=' && iter->env_var[h] != '\0')
-				h++;
-			if (ft_strncmp(iter->env_var, cmd, h) == 0)
-				return(iter);
-		}
-	iter = iter->next;
+		if (equal_flag && ft_strlen(iter->env_var) == len_cmd
+			&& ft_strncmp(iter->env_var, cmd, len_cmd + 1) == 0)
+			return (iter);
+		while (!equal_flag
+			&& iter->env_var[h] != '=' && iter->env_var[h] != '\0')
+			h++;
+		if (!equal_flag && ft_strncmp(iter->env_var, cmd, h) == 0)
+			return (iter);
+		iter = iter->next;
 	}
-	return(NULL);
+	return (NULL);
 }
 
 int	ft_unset(t_command *cmd, t_minishell *master)
 {
 	int		i;
-	int		envp_size;
-	int		len_cmd;
 	int		env_flag;
 	t_env	*iter;
 
-	i = true;
+	i = 1;
 	while (cmd->cmd[i])
 	{
 		env_flag = true;
-		while(env_flag >= 0)
+		while (env_flag >= 0)
 		{
-			iter = check_if_exists(cmd->cmd[i], master, env_flag);
+			iter = find_node(cmd->cmd[i], master, env_flag);
 			if (iter)
 				remove_env_node(master, iter, env_flag);
 			env_flag--;

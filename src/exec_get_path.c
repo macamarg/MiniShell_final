@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:15:00 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/02/19 11:09:28 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:14:40 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_array(char **array)
 	free (array);
 }
 
-static char **get_paths(t_minishell *master)
+static char	**get_paths(t_minishell *master)
 {
 	int		i;
 	char	**paths;
@@ -36,14 +36,14 @@ static char **get_paths(t_minishell *master)
 		if (ft_strncmp(master->env[i], "PATH", 4) == 0)
 		{
 			paths = ft_split((master->env[i] + 5), ':');
-			if(!paths)
+			if (!paths)
 			{
 				perror("malloc error");
-				return(NULL);
+				return (NULL);
 			}
 		}
 	}
-	return(paths);
+	return (paths);
 }
 
 static char	*absolute_path(char **cmd, t_minishell *master)
@@ -55,7 +55,7 @@ static char	*absolute_path(char **cmd, t_minishell *master)
 	{
 		path = safe_malloc(ft_strlen(cmd[0]) + 1);
 		ft_strlcpy(path, cmd[0], ft_strlen(cmd[0]) + 1);
-		if(ft_strncmp(cmd[0], "./minishell", 11) == 0)
+		if (ft_strncmp(cmd[0], "./minishell", 11) == 0)
 			add_shell_level(master);
 		return (path);
 	}
@@ -65,7 +65,6 @@ static char	*absolute_path(char **cmd, t_minishell *master)
 
 static char	*not_absolute_path(char **cmd, t_minishell *master)
 {
-	char	*path_part;
 	char	*path_test;
 	char	**paths;
 	int		i;
@@ -73,16 +72,12 @@ static char	*not_absolute_path(char **cmd, t_minishell *master)
 	i = -1;
 	paths = get_paths(master);
 	if (paths == NULL)
- 	{
- 		return (NULL);
- 	}
-	path_part = NULL;
+		return (NULL);
 	path_test = NULL;
-	while (paths[++i] != NULL)
+	while (paths[++i])
 	{
-		path_part = ft_strjoin (paths[i], "/");
-		path_test = ft_strjoin(path_part, cmd[0]);
-		free(path_part);
+		path_test = ft_strjoin (paths[i], "/");
+		path_test = ft_strjoin_free(path_test, cmd[0]);
 		if (access(path_test, X_OK) == 0)
 		{
 			free_array(paths);

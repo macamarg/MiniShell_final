@@ -23,6 +23,7 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/minishell_cpy_envp.c\
 	$(SRC_DIR)/minishell_exec.c\
 	$(SRC_DIR)/exec_get_path.c\
+	$(SRC_DIR)/exec_get_path_utils.c\
 	$(SRC_DIR)/exec_builtin.c\
 	$(SRC_DIR)/builtin_pwd.c\
 	$(SRC_DIR)/builtin_echo.c\
@@ -30,13 +31,14 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/builtin_env.c\
 	$(SRC_DIR)/builtin_unset.c\
 	$(SRC_DIR)/builtin_export.c\
+	$(SRC_DIR)/builtin_export_utils.c\
 	$(SRC_DIR)/builtin_exit.c\
 	$(SRC_DIR)/heredoc.c\
 	$(SRC_DIR)/sort_env.c\
 	$(SRC_DIR)/exec_other.c\
 	$(SRC_DIR)/exec_pipeline.c\
+	$(SRC_DIR)/exec_pipeline_utils.c\
 	$(SRC_DIR)/shell_level.c\
-	$(SRC_DIR)/error_handling.c\
 	$(SRC_DIR)/minishell_clean.c\
 	$(SRC_DIR)/minishell_free.c\
 	$(SRC_DIR)/test.c\

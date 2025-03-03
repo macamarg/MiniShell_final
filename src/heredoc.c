@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/02/19 09:38:42 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:14:11 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	here_doc_child(char *eof, int *fd_pipe)
 {
 	char	*line;
-	char	*new_line;
 	char	*temp;
 
 	close(fd_pipe[0]);
@@ -36,10 +35,8 @@ void	here_doc_child(char *eof, int *fd_pipe)
 			free(temp);
 			break;
 		}
-		new_line = ft_strjoin(line, temp);
-		free(line);
-		line = ft_strjoin(new_line, "\n");  // Add newline
-		free(new_line);
+		line = ft_strjoin_free(line, temp);
+		line = ft_strjoin_free(line, "\n");  // Add newline
 		free(temp);
 	}
 	ft_putstr_fd(line, fd_pipe[1]);  // Write full input to pipe

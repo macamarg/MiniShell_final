@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:58:05 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/02/17 14:29:53 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:58:39 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 void	exec_cmd(t_minishell *master, t_command *cmd)
 {
-	
 	if (is_builtin(cmd->cmd[0]))
 		exec_builtin((cmd), master);
 	else
@@ -28,12 +27,12 @@ void	exec_cmd(t_minishell *master, t_command *cmd)
 
 int	check_cmd(t_minishell *master, t_command *cmd)
 {
-	if(!cmd->cmd_path)
+	if (!cmd->cmd_path)
 	{
 		error_cmdnfound(master, cmd->cmd);
-		return(1);
+		return (1);
 	}
-	return(0);
+	return (0);
 }
 
 void	fill_cmd(t_minishell *master, t_command *cmd_lst)
@@ -57,8 +56,9 @@ void	fill_cmd(t_minishell *master, t_command *cmd_lst)
 
 void	mini_exec(t_minishell *master)
 {
-		if (!master->cmd_lst || !(*master->cmd_lst) || !(*master->cmd_lst)->cmd || !(*master->cmd_lst)->cmd[0])
-		return;
+	if (!master->cmd_lst || !(*master->cmd_lst) || !(*master->cmd_lst)->cmd
+		|| !(*master->cmd_lst)->cmd[0])
+		return ;
 	else
 	{
 		fill_cmd(master, *(master->cmd_lst));
@@ -68,4 +68,3 @@ void	mini_exec(t_minishell *master)
 			exec_pipeline(master, *(master->cmd_lst));
 	}
 }
-

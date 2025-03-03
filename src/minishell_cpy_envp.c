@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:52:08 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/11 11:56:27 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:13:31 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ unsigned int	env_count(t_env *envp)
 		count++;
 		iter = iter->next;
 	}
-	return(count);
+	return (count);
 }
 
-
-char **env_cpy_arr(t_env *envp, int count)
+char	**env_cpy_arr(t_env *envp, int count)
 {
 	t_env	*iter;
 	char	**tmp;

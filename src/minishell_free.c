@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:45:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/11 13:07:42 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:59:14 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_clean_token(t_token **token_lst)
 		}
 	}
 	free (token_lst);
-
 }
 
 static void	ft_clean_cmdnode(t_command *iter)
@@ -63,7 +62,7 @@ void	ft_clean_cmd(t_command **cmd_lst)
 	t_command	*iter2;
 
 	if (cmd_lst == NULL || *cmd_lst == NULL)
-		return 	;
+		return ;
 	iter = *cmd_lst;
 	while (iter != NULL)
 	{

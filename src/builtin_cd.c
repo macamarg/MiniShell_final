@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/19 11:50:35 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:13:50 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 		free(path);
 		return (1);
 	}
+	get_local_directory(master);
 	free(path);
 	return (0);
 }

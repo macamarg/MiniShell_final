@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:19:04 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/02/19 12:43:46 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:08:23 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	exec_builtin(t_command *cmd, t_minishell *master)
 	if (ft_strncmp(cmd->cmd[0], "cd", 3) == 0)
 		result = ft_cd(cmd, master);
 	if (ft_strncmp(cmd->cmd[0], "pwd", 4) == 0)
-		result = ft_pwd(cmd);
+		result = ft_pwd(cmd, master);
 	if (ft_strncmp(cmd->cmd[0], "export", 7) == 0)
 		ft_export(cmd, master);
 	if (ft_strncmp(cmd->cmd[0], "unset", 6) == 0)

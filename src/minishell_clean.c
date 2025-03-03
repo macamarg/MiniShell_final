@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:01:28 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/11 13:05:37 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:10:39 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 
 void	close_cmd_list_fds(t_command *cmd_lst)
 {
-	t_command *current;
+	t_command	*current;
 
 	current = cmd_lst;
-	while(current)
+	while (current)
 	{
 		if (current->fd_in != STDIN_FILENO)
 			close(current->fd_in);
 		if (current->fd_out != STDOUT_FILENO)
 			close(current->fd_out);
-	current = current ->next;	
-	}	
+		current = current ->next;
+	}
 }
 
 /*
@@ -52,7 +52,7 @@ void	ft_clean_env(t_env *envp, char **env)
 			free(iter2);
 		}
 	}
-	if(env)
+	if (env)
 		free_array (env);
 }
 
@@ -65,7 +65,7 @@ void	ft_clean_ms(t_minishell *master)
 {
 	ft_clean_env(master->envp, master->env);
 	if (master->prompt)
-	ft_clean_env(master->export, NULL);
+		ft_clean_env(master->export, NULL);
 	if (master->prompt)
 		free (master->prompt);
 	if (master->cmd_lst)
