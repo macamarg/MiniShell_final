@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/19 09:37:29 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/04 14:30:01 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,5 @@ void	make_tokenlst(t_minishell *master)
 	//print_tokenlst(master->token_lst);
 	class_token(master);
 	//if(master->prompt_status == true)
-		//print_tokenlst(master->token_lst);
+	//	print_tokenlst(master->token_lst);
 }

@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/03 14:11:36 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:14:24 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,6 @@ char **env_cpy_arr(t_env *envp, int count);
 unsigned int	env_count(t_env *envp);
 void	print_env(char **env);
 void	print_envp(t_env *env);
-
 
 //exec
 void	mini_exec(t_minishell *master);

@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:15:00 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/03 13:14:40 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:29:34 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ char	*get_cmdpath(t_minishell *master, t_command *cmd)
 {
 	char	*path;
 
+	path = NULL;
 	if (ft_strchr(cmd->cmd[0], '/') != NULL)
 		path = absolute_path(cmd->cmd, master);
 	else

@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:58:05 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/03 14:58:39 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:29:17 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	fill_cmd(t_minishell *master, t_command *cmd_lst)
 	t_command	*current;
 
 	current = cmd_lst;
-	while (current != NULL)
+	while (current != NULL && current->cmd)
 	{
 		if (!is_builtin(current->cmd[0]))
 			current->cmd_path = get_cmdpath(master, current);
