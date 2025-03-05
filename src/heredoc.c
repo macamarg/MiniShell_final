@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/05 12:02:25 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:57:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*rm_quotes_str(char *str)
 
 static void	free_and_exit(char *line, int fd_pipe)
 {
+	ft_clean_ms(mini_call());
 	free(line);
 	close(fd_pipe);
 	exit(0);
