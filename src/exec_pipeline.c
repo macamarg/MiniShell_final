@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/03 14:57:13 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:09:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	child_process(t_minishell *master, t_command *start, int *fd_pipe,
 	if (is_builtin(start->cmd[0]))
 	{
 		exec_builtin_pipeline(master, start, fd_pipe, prev_read_fd);
+		ft_clean_ms(master);
 		exit(master->last_status);
 	}
 	if (execve(start->cmd_path, start->cmd, master->env) == -1)
