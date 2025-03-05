@@ -37,6 +37,7 @@ static void	cmd_init(t_command *tmp)
 static void	token_count(t_token **token_lst, t_count *cmd_count)
 {
 	t_token	*iter;
+	bool	quotes;
 
 	iter = *token_lst;
 	while (iter && iter->type != PIPE)
@@ -44,7 +45,8 @@ static void	token_count(t_token **token_lst, t_count *cmd_count)
 		iter->token = quotes_rm(iter);
 		if (iter->type == EXPAND)
 		{
-			iter->token = get_valueexp(iter->token, mini_call(), -1, 0);
+			token_expansion(&iter);
+			//iter->token = get_valueexp(iter->token, mini_call(), -1, 0);
 			if (iter->token != NULL)
 				iter->type = STRING;
 		}

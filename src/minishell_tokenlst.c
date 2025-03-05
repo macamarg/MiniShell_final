@@ -83,7 +83,7 @@ static int	new_token(t_minishell *master, char *prompt)
 	tmp->token = safe_malloc(end + 1);
 	ft_strlcpy(tmp->token, prompt, end + 1);
 	tmp->next = NULL;
-	tmp->prev = NULL;
+	tmp->next = NULL;
 	add_tokenback(master->token_lst, tmp);
 	return (end);
 }

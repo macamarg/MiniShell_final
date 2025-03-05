@@ -14,6 +14,7 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/minishell_call.c\
 	$(SRC_DIR)/minishell_tokenlst.c\
 	$(SRC_DIR)/minishell_classtoken.c\
+	$(SRC_DIR)/minishell_exptoken.c\
 	$(SRC_DIR)/print_tokenlst.c\
 	$(SRC_DIR)/minishell_cmdstruc.c\
 	$(SRC_DIR)/minishell_cmd_utils.c\
