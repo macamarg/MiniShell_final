@@ -3,37 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/04 15:46:01 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:02:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-static char	*rm_quotes_eof(char *eof)
+char	*rm_quotes_str(char *str)
 {
-	char	*tmp;
-	int		len;
 	int		i;
+	int		j;
+	int		end;
+	char	*new_str;
 
-	tmp = NULL;
-	len = ft_strlen(eof);
 	i = 0;
-	tmp = ft_calloc(len + 1, sizeof(char));
-	if (tmp == NULL)
-		return (NULL);
-	while (i < len)
+	j = 0;
+	new_str = NULL;
+	new_str = ft_calloc(ft_strlen(str) + 1, sizeof(char));
+	while (str[i])
 	{
-		if (eof[i] == '\'' || eof[i] == '\"')
+		if (str[i] == '\"' || str[i] == '\'')
+		{
+			end = findquotes(str, i);
 			i++;
-		tmp[i] = eof[i];
-		i++;
+			while (i < end)
+			{
+				new_str[j++] = str[i++];
+			}
+			i++;
+		}
+		else
+			new_str[j++] = str[i++];
 	}
-	tmp[i] = '\0';
-	return (tmp);
+	new_str[j] = '\0';
+	str = ft_strdup(new_str);
+	free(new_str);
+	return (str);
 }
 
 static void	free_and_exit(char *line, int fd_pipe)
@@ -62,7 +70,8 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 			free(temp);
 			break ;
 		}
-		temp = get_valueexp(temp, mini_call(), -1, 0);
+		if (!quotes_flag)
+			temp = get_valueexp(temp, mini_call(), -1, 0);
 		line = ft_strjoin_free(line, temp);
 		line = ft_strjoin_free(line, "\n");
 		free(temp);
@@ -77,9 +86,11 @@ int	redir_heredoc(char *eof)
 	int		pid;
 	bool	quotes_flag;
 
-	//quotes_flag = quotes_check(eof);exit
+	quotes_flag = false;
+	if (ft_strchr(eof, '\"') || ft_strchr(eof, '\''))
+		quotes_flag = true;
 	if (quotes_flag)
-		eof = rm_quotes_eof(eof);
+		eof = rm_quotes_str(eof);
 	if (pipe(fd_pipe) < 0)
 		return (-1);
 	pid = fork();

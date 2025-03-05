@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_tokenlst.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/04 14:30:01 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:47:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	findquotes(char *prompt, int i)
+int	findquotes(char *prompt, int i)
 {
 	if (prompt[i] == '\"')
 	{

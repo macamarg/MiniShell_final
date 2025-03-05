@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:01:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/03 10:48:58 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:08:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	ft_export(t_command *cmd, t_minishell *master)
 {
 	int		i;
 	t_env	*iter;
+	char	*unquoted;
 
 	i = 0;
 	if (!cmd->cmd[1])
@@ -108,12 +109,13 @@ int	ft_export(t_command *cmd, t_minishell *master)
 	}
 	while (cmd->cmd[++i])
 	{
-		if (!is_valid_variable(cmd->cmd[i]))
-			ft_export_error(cmd->cmd[i], master);
+		unquoted = rm_quotes_str(cmd->cmd[i]);
+		if (!is_valid_variable(unquoted))
+			ft_export_error(unquoted, master);
 		else
-			ft_execute_export(cmd->cmd[i], master);
+			ft_execute_export(unquoted, master);
 	}
-	i = env_count(master->envp);
+		i = env_count(master->envp);
 	master->env = env_cpy_arr(master->envp, i);
 	return (0);
 }

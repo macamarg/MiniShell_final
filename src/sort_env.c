@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:34:01 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/03 15:07:03 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:13:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	print_sorted_env(t_minishell *master)
 		{
 			ft_putchar_fd('=', 1);
 			i++;
-			if (iter->env_var[++i] != '\0')
+			if (iter->env_var[i] != '\0')
 				ft_putchar_fd('"', 1);
 			while (iter->env_var[i] != '\0')
 				ft_putchar_fd(iter->env_var[i++], 1);

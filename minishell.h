@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/04 15:14:24 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:02:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ void	make_tokenlst(t_minishell *master);
 void	print_tokenlst(t_token **token_lst);
 void	class_token(t_minishell *master);
 void    token_expansion(t_token **token_lst);
+int		findquotes(char *prompt, int i);
 
 //cmd struct
 void	cmd_structfill(t_minishell *master);
@@ -176,6 +177,7 @@ void	print_cmdlst(t_command *cmd_lst);
 char	*quotes_rm(t_token *iter);
 void	redir_handler(t_minishell *master);
 int		redir_heredoc(char *eof);
+char	*rm_quotes_str(char *str);
 char	**cmd_fill(t_token **token_lst, int count, int t_class);
 
 //expand
