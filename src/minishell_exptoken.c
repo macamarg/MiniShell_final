@@ -49,6 +49,7 @@ static void insert_exp(char	**splited, t_token *token_lst, t_token *next_token, 
 	
 	if(token_lst->token)
 		free(token_lst->token);
+	token_lst->token = NULL;
 	len = ft_strlen(splited[0]);
 	token_lst->token = safe_malloc(len + 1);
 	ft_memcpy(token_lst->token, splited[0], len);
@@ -70,6 +71,8 @@ void	token_expansion(t_token *token_lst)
 	int		i;
 	bool	quotes;
 
+	splited = NULL;
+	quotes = false;
 	if(token_lst->token[0] == '"')
 		quotes = true;
 	token_lst->token = get_valueexp(token_lst->token, mini_call(), -1, 0);
@@ -79,8 +82,8 @@ void	token_expansion(t_token *token_lst)
 		splited = ft_split(token_lst->token, ' ');
 		insert_exp(splited, token_lst, token_lst->next, i);
 		i = 0;
-		while(splited[++i] != NULL)
-			free(splited[i]);
+		while(splited [i] != NULL)
+			free(splited[i++]);
 		free(splited);
 	}
 }

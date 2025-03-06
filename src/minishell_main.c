@@ -60,6 +60,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_minishell	*master;
 
+	master = NULL;
 	if (argc == 1)
 	{
 		master = mini_init(argv, envp);
