@@ -92,6 +92,7 @@ void	ignore_signals_init(void)
 	sa_int.sa_flags = SA_RESTART;
 	sa_int.sa_handler = SIG_IGN;
 	sigaddset(&sa_int.sa_mask, SIGINT);
+	sigaction(SIGINT, &sa_int, 0);
 	//if SIGQUIT(CTRL-\) calls SIG_IGN
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = SA_RESTART;

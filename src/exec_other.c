@@ -16,6 +16,7 @@ void	wait_for_child(t_minishell *master, int pid)
 {
 	int	status;
 
+	ignore_signals_init();
 	if (waitpid(pid, &status, 0) == -1)
 		perror("waitpid");
 	else if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
@@ -48,6 +49,7 @@ int	exec_other(t_command *cmd, t_minishell *master)
 	}
 	if (pid == 0)
 	{
+		child_signals_init();
 		child_handle_fd(cmd, master);
 		if (execve(cmd->cmd_path, cmd->cmd, master->env) == -1)
 		{

@@ -94,6 +94,7 @@ void	exec_pipeline(t_minishell *master, t_command *cmd_lst)
 			return (perror("fork"));
 		if (pid == 0)
 			child_process(master, start, fd_pipe, prev_read_fd);
+		ignore_signals_init();
 		last_pid = pid;
 		parent_cleanup(&prev_read_fd, fd_pipe, start);
 		start = start->next;

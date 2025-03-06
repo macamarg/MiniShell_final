@@ -63,6 +63,7 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 	line = ft_strdup("");
 	while (1)
 	{
+		here_doc_signals_init();
 		temp = readline("> ");
 		if (!temp)
 			free_and_exit(line, fd_pipe[1]);
@@ -104,6 +105,7 @@ int	redir_heredoc(char *eof)
 		here_doc_child(eof, fd_pipe, quotes_flag);
 	else
 	{
+		ignore_signals_init();
 		close(fd_pipe[1]);
 		waitpid(pid, NULL, 0);
 		return (fd_pipe[0]);
