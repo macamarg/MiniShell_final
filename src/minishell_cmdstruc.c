@@ -45,7 +45,7 @@ static void	token_count(t_token **token_lst, t_count *cmd_count)
 		iter->token = quotes_rm(iter);
 		if (iter->type == EXPAND)
 		{
-			token_expansion(&iter);
+			token_expansion(iter);
 			//iter->token = get_valueexp(iter->token, mini_call(), -1, 0);
 			if (iter->token != NULL)
 				iter->type = STRING;
@@ -124,7 +124,7 @@ void	cmd_structfill(t_minishell *master)
 		if (iter && iter->type == PIPE)
 			iter = iter->next;
 	}
-	//print_cmdlst(*(master->cmd_lst));
+	// print_cmdlst(*(master->cmd_lst));
 	redir_handler(master);
 }
 /*

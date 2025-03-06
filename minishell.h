@@ -168,7 +168,7 @@ void	ft_parseline(t_minishell *master);
 void	make_tokenlst(t_minishell *master);
 void	print_tokenlst(t_token **token_lst);
 void	class_token(t_minishell *master);
-void    token_expansion(t_token **token_lst);
+void    token_expansion(t_token *token_lst);
 int		findquotes(char *prompt, int i);
 
 //cmd struct

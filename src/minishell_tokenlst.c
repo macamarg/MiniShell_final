@@ -109,6 +109,6 @@ void	make_tokenlst(t_minishell *master)
 	}
 	//print_tokenlst(master->token_lst);
 	class_token(master);
-	//if(master->prompt_status == true)
-	//	print_tokenlst(master->token_lst);
+	// if(master->prompt_status == true)
+	// 	print_tokenlst(master->token_lst);
 }
