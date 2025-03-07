@@ -61,9 +61,9 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 	line = NULL;
 	temp = NULL;
 	line = ft_strdup("");
+	here_doc_signals_init();
 	while (1)
 	{
-		here_doc_signals_init();
 		temp = readline("> ");
 		if (!temp)
 			free_and_exit(line, fd_pipe[1]);
@@ -101,11 +101,11 @@ int	redir_heredoc(char *eof)
 		ft_putstr_fd("Fork failed!\n", 2);
 		return (-1);
 	}
+	ignore_signals_init();
 	if (pid == 0)
 		here_doc_child(eof, fd_pipe, quotes_flag);
 	else
 	{
-		ignore_signals_init();
 		close(fd_pipe[1]);
 		waitpid(pid, NULL, 0);
 		return (fd_pipe[0]);

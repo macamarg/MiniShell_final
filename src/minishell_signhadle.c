@@ -15,7 +15,8 @@ void	sigint_handler(int signum)
 		rl_redisplay();
 	}
 }
-//if CTRL-C status change and then close STDIN and back to prompt 
+//if CTRL-C status change and then close STDIN and back to prompt
+//if CTRL-D //if CTRL-C status change and then close STDIN and back to prompt
 void	here_handler(int signum)
 {
 	t_minishell	*master;
