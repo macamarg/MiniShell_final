@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/08 11:23:44 by macamarg          #+#    #+#             */
+/*   Updated: 2025/03/08 11:25:11 by macamarg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
-# include <signal.h>
 
 /*
 	struct sigaction:
@@ -22,13 +33,11 @@ void	prompt_signals_init(void)
 	sa_int.sa_flags = SA_RESTART;
 	sa_int.sa_handler = sigint_handler;
 	sigaddset(&sa_int.sa_mask, SIGINT);
-	//if SIGINT(CTRL-C) calls sigint_handler
 	sigaction(SIGINT, &sa_int, 0);
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = SA_RESTART;
 	sa_quit.sa_handler = SIG_IGN;
 	sigaddset(&sa_quit.sa_mask, SIGQUIT);
-	//if SIGQUIT(CTRL-\) calls SIG_IGN
 	sigaction(SIGQUIT, &sa_quit, 0);
 }
 
@@ -37,21 +46,17 @@ void	here_doc_signals_init(void)
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
 
-	//if SIGINT(CTRL-C) calls here_handler
 	sigemptyset(&sa_int.sa_mask);
 	sa_int.sa_flags = SA_RESTART;
 	sa_int.sa_handler = here_handler;
 	sigaddset(&sa_int.sa_mask, SIGINT);
 	sigaction(SIGINT, &sa_int, 0);
 	sigemptyset(&sa_quit.sa_mask);
-	//if SIGQUIT(CTRL-\) calls SIG_IGN and restore std-behav
 	sa_quit.sa_flags = SA_RESTART;
 	sa_quit.sa_handler = SIG_IGN;
 	sigaddset(&sa_quit.sa_mask, SIGQUIT);
 	sigaction(SIGQUIT, &sa_quit, 0);
-
 }
-
 
 /*
 
@@ -66,19 +71,16 @@ void	child_signals_init(void)
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
 
-	//if SIGINT calls child_handler and restart signal behav
 	sigemptyset(&sa_int.sa_mask);
 	sa_int.sa_flags = SA_RESTART;
 	sa_int.sa_handler = child_handler;
 	sigaddset(&sa_int.sa_mask, SIGINT);
 	sigaction(SIGINT, &sa_int, 0);
-	//if SIGQUIT calls child_handler and restore signal behav
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = SA_RESTART;
 	sa_quit.sa_handler = child_handler;
 	sigaddset(&sa_quit.sa_mask, SIGQUIT);
 	sigaction(SIGQUIT, &sa_quit, 0);
-
 }
 
 //after acquire prompt until execute command
@@ -87,13 +89,11 @@ void	ignore_signals_init(void)
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
 
-	//if SIGINT(CTRL-C) calls SIG_IGN
 	sigemptyset(&sa_int.sa_mask);
 	sa_int.sa_flags = SA_RESTART;
 	sa_int.sa_handler = SIG_IGN;
 	sigaddset(&sa_int.sa_mask, SIGINT);
 	sigaction(SIGINT, &sa_int, 0);
-	//if SIGQUIT(CTRL-\) calls SIG_IGN
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = SA_RESTART;
 	sa_quit.sa_handler = SIG_IGN;

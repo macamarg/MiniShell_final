@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_clean.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:01:28 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/05 16:58:42 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/08 11:03:13 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 void	close_cmd_list_fds(t_command *cmd_lst)
 {
 	t_command	*current;
-	if(!cmd_lst)
+
+	if (!cmd_lst)
 		return ;
 	current = cmd_lst;
 	while (current)
@@ -75,5 +76,4 @@ void	ft_clean_ms(t_minishell *master)
 		ft_clean_cmd(master->cmd_lst);
 	if (master->token_lst)
 		ft_clean_token(master->token_lst);
-
 }

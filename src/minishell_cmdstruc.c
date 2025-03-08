@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmdstruc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:33:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/19 09:38:05 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:05:13 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ static void	new_cmd(t_minishell *master, t_token **token_lst,
 	tmp->cmd = cmd_fill(token_lst, cmd_count->cmd_n, STRING);
 	tmp->redir_in = cmd_fill(token_lst, cmd_count->redirin_n, PATH_IN);
 	tmp->redir_out = cmd_fill(token_lst, cmd_count->redirout_n, PATH_OUT);
-	//tmp->end_file = cmd_fill(token_lst, cmd_count->heredoc_n, ENDFILE);
-	
-	//test
 	//print_cmdlst(tmp);
 	if (cmd_count->pipe == 1)
 		tmp->pipe = true;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:10:50 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/04 15:14:14 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:12:14 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ static bool	quotes_check(char *prompt)
 */
 static bool	ft_syntax_check(t_minishell *master)
 {
-	//int	i;
-	//int	d_quotes;
-
-	//i = 0;
 	master->prompt_status = true;
 	if (master->prompt)
 	{

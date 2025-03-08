@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_tokenlst.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/05 10:47:51 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/08 11:28:10 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int	find_token(char *prompt, int i)
 		if (prompt[i] != '>' && prompt[i] != '<' && prompt[i] != '|')
 		{
 			i++;
-			if (prompt[i] == '>' || prompt[i] == '<' || prompt[i] == '|' || prompt[i] == ' ')
+			if (prompt[i] == '>' || prompt[i] == '<' || prompt[i] == '|'
+				|| prompt[i] == ' ')
 				return (i);
 		}
 		else if (prompt[i] == '>' || prompt[i] == '<' || prompt[i] == '|')
@@ -87,6 +88,7 @@ static int	new_token(t_minishell *master, char *prompt)
 	add_tokenback(master->token_lst, tmp);
 	return (end);
 }
+
 /*
 	memory allocation for token list
 	running through prompt to copy token to lst
@@ -107,7 +109,6 @@ void	make_tokenlst(t_minishell *master)
 		while (master->prompt[i] == ' ')
 			i++;
 	}
-	//print_tokenlst(master->token_lst);
 	class_token(master);
 	// if(master->prompt_status == true)
 	// 	print_tokenlst(master->token_lst);

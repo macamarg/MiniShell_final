@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_classtoken.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:15:32 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/17 13:42:49 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:02:07 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ static bool	syntax_redir(t_token *iter)
 	stat = true;
 	if (iter->next == NULL)
 		stat = false;
-	else if(iter->type == HEREDOC && iter->next->type == STRING)
+	else if (iter->type == HEREDOC && iter->next->type == STRING)
 		iter->next->type = PATH_IN;
-	else if(iter->type == REDIR_IN && iter->next->type == STRING)
+	else if (iter->type == REDIR_IN && iter->next->type == STRING)
 		iter->next->type = PATH_IN;
-	else if(iter->type == REDIR_OUTA && iter->next->type == STRING)
+	else if (iter->type == REDIR_OUTA && iter->next->type == STRING)
 		iter->next->type = PATH_OUT;
-	else if(iter->type == REDIR_OUTW && iter->next->type == STRING)
+	else if (iter->type == REDIR_OUTW && iter->next->type == STRING)
 		iter->next->type = PATH_OUT;
 	else if (iter->next->type != STRING)
 		stat = false;
@@ -106,11 +106,11 @@ void	class_token(t_minishell *master)
 	{
 		if (iter->type == PIPE)
 			token_stat = syntax_pipe(iter);
-		else if((iter->type == REDIR_IN || iter->type == REDIR_OUTW ||
-			iter->type == REDIR_OUTA || iter->type == HEREDOC))
+		else if ((iter->type == REDIR_IN || iter->type == REDIR_OUTW
+				|| iter->type == REDIR_OUTA || iter->type == HEREDOC))
 			token_stat = syntax_redir(iter);
 		if (!token_stat)
-			break;
+			break ;
 		//printf("Token %s type %i\n", iter->token, iter->type);
 		iter = iter->next;
 	}

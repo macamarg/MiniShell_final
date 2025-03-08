@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_signhadle.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/08 11:26:12 by macamarg          #+#    #+#             */
+/*   Updated: 2025/03/08 11:26:47 by macamarg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	sigint_handler(int signum)
@@ -8,13 +20,13 @@ void	sigint_handler(int signum)
 	if (signum == SIGINT)
 	{
 		master->last_status = 130;
-		ft_putchar_fd('\n', 1); // Print a newline
-		//re-prompt the user
+		ft_putchar_fd('\n', 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
+
 //if CTRL-C status change and then close STDIN and back to prompt
 //if CTRL-D //if CTRL-C status change and then close STDIN and back to prompt
 void	here_handler(int signum)
@@ -29,6 +41,7 @@ void	here_handler(int signum)
 		close(STDIN_FILENO);
 	}
 }
+
 //status change and then child/exec will handle signal acordingly
 void	child_handler(int signum)
 {

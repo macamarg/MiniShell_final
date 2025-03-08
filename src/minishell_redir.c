@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_redir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:27:48 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/17 14:36:51 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:23:21 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	check_infile(char *file)
 	zsh: no such file or directory: case
 		-case doesnt exist stop executin of cmd1
 */
+
 static int	redir_in(char **redir_in)
 {
 	int	i;
@@ -67,12 +68,10 @@ static int	redir_in(char **redir_in)
 	return (fd);
 }
 
-static int	redir_out(char **redir_out)
+static int	redir_out(char **redir_out, int i)
 {
-	int	i;
 	int	fd;
 
-	i = -1;
 	fd = STDOUT_FILENO;
 	while (redir_out[++i])
 	{
@@ -104,17 +103,17 @@ void	redir_handler(t_minishell *master)
 	int			out;
 
 	iter = *master->cmd_lst;
-	while(iter)
+	while (iter)
 	{
 		if (iter->redir_in)
 			iter->fd_in = redir_in(iter->redir_in);
 		else
 			iter->fd_in = STDIN_FILENO;
 		if (iter->redir_out)
-			iter->fd_out = redir_out(iter->redir_out);
+			iter->fd_out = redir_out(iter->redir_out, -1);
 		else
 			iter->fd_out = STDOUT_FILENO;
-		if(iter->fd_out < 0)
+		if (iter->fd_out < 0)
 		{
 			ft_putstr_fd("Error opening outfile", 2);
 			master->prompt_status = false;

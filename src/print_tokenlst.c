@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tokenlst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 10:41:34 by macamarg          #+#    #+#             */
-/*   Updated: 2025/02/12 11:52:13 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:29:37 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ void	print_tokenlst(t_token **token_lst)
 void	print_cmdlst(t_command *cmd_lst)
 {
 	t_command	*iter_cmd;
+	int			i;
 
 	iter_cmd = cmd_lst;
-	int i;
+
 	while (iter_cmd)
 	{
 		// Print command list
