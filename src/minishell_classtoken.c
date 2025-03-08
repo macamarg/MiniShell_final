@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:15:32 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 11:02:07 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:19:40 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	exitsyntax_err(void)
 	printf("syntax error\n");
 }
 
-static int	class_find(char *token)
+static int	class_find(char *token, int i)
 {
-	int	i;
+	bool	quotes;
 
-	i = -1;
+	quotes = false;
 	if (token[0] == '>' && token[1] == '>')
 		return (REDIR_OUTA);
 	else if (token[0] == '>')
@@ -38,9 +38,11 @@ static int	class_find(char *token)
 		return (REDIR_IN);
 	else if (token[0] == '|')
 		return (PIPE);
+	if (token[0] == '"')
+		quotes = true;
 	while (token[++i] != '\0')
 	{
-		if (token[i] == '\'')
+		if (token[i] == '\'' && quotes == false)
 		{
 			while (token[++i] != '\0' && token[i] != '\'')
 				;
@@ -98,7 +100,7 @@ void	class_token(t_minishell *master)
 	token_stat = true;
 	while (iter)
 	{
-		iter->type = class_find(iter->token);
+		iter->type = class_find(iter->token, -1);
 		iter = iter->next;
 	}
 	iter = *master->token_lst;
