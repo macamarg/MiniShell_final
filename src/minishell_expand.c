@@ -25,6 +25,8 @@ static int	len_count(char *tmp)
 	{
 		while (tmp[i] != '\0' && (ft_isalnum(tmp[i]) == 1 || tmp[i] == '_'))
 			i++;
+		if (tmp[i] == '"')
+			i++;
 	}
 	return (i);
 }
@@ -65,9 +67,9 @@ static char	**collectexp(char *token, t_minishell *master, int i, int j)
 	collect = (char **)ft_calloc(exp_count(token, 0, 0), sizeof(char *));
 	while (token[i] != '\0')
 	{
-		if (token[i] == '$' && token[i + 1] != '\0')
+		if (token[i] == '$' && token[i + 1] != '\0' && when_expand(token, i) == true)
 		{
-			if (j != i)
+			if (j != i && when_cpy(token, i, j))
 				collect[++k] = collectprior(token, i, j);
 			if (token[++i] == '?')
 				collect[++k] = ft_itoa(master->last_status);
@@ -79,7 +81,7 @@ static char	**collectexp(char *token, t_minishell *master, int i, int j)
 		else
 			i++;
 	}
-	if (j != i)
+	if (j != i && when_cpy(token, i, j))
 		collect[++k] = collectprior(token, i, j);
 	return (collect);
 }
@@ -122,8 +124,8 @@ char	*get_valueexp(char *token, t_minishell *master, int i, int n)
 	int		j;
 
 	tmp = ft_strtrim(token, "\"");
-	n = exp_count(tmp, 0, 0);
-	collect = collectexp(tmp, master, 0, 0);
+	n = exp_count(token, 0, 0);
+	collect = collectexp(token, master, 0, 0);
 	value = expjoin(n, collect);
 	j = -1;
 	while (++j < n)

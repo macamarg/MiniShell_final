@@ -184,6 +184,8 @@ char	**cmd_fill(t_token **token_lst, int count, int t_class);
 char			*std_exp(char *tmp, t_minishell *master, int i);
 char			*get_valueexp(char *token, t_minishell *master, int i, int n);
 char			*collectprior(char *token, int i, int j);
+bool			when_expand(char *token, int i);
+bool			when_cpy(char *token, int i, int j);
 
 //redir
 void	ft_find_redir(t_minishell *master);
