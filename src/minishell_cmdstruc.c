@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmdstruc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:33:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 11:05:13 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:08:21 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	cmd_structfill(t_minishell *master)
 		if (iter && iter->type == PIPE)
 			iter = iter->next;
 	}
-	// print_cmdlst(*(master->cmd_lst));
+	//print_cmdlst(*(master->cmd_lst));
 	redir_handler(master);
 }
 /*

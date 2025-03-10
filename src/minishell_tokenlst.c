@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_tokenlst.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 12:21:17 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:08:09 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ void	make_tokenlst(t_minishell *master)
 			i++;
 	}
 	class_token(master);
-	// if(master->prompt_status == true)
-	// 	print_tokenlst(master->token_lst);
+	//if(master->prompt_status == true)
+	//	print_tokenlst(master->token_lst);
 }

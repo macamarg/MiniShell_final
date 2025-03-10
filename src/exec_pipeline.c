@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/05 18:09:36 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/10 12:03:50 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ void	exec_pipeline(t_minishell *master, t_command *cmd_lst)
 	prev_read_fd = -1;
 	start = cmd_lst;
 	while (start)
-	{
+	{	
+		if(start->cmd)
+		{
 		if (pipe(fd_pipe) < 0)
 			return (perror("pipe"));
 		pid = fork();
@@ -97,6 +99,7 @@ void	exec_pipeline(t_minishell *master, t_command *cmd_lst)
 		ignore_signals_init();
 		last_pid = pid;
 		parent_cleanup(&prev_read_fd, fd_pipe, start);
+		}
 		start = start->next;
 	}
 	if (prev_read_fd != -1)
