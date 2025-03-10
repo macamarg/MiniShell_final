@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_redir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:27:48 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 11:23:21 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:27:52 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,19 @@ static int	redir_in(char **redir_in)
 		if (i != 0 && fd != STDIN_FILENO)
 			close(fd);
 		fd = STDIN_FILENO;
+		if (redir_in[i][0] == 'H')
+			fd = redir_heredoc(&redir_in[i][1]);
+		if (fd < 0)
+			return (-1);
+	}
+	i = 0;
+	while (redir_in[++i])
+	{
+		if (i != 0 && fd != STDIN_FILENO)
+			close(fd);
+		fd = STDIN_FILENO;
 		if (redir_in[i][0] == 'I')
 			fd = check_infile(&redir_in[i][1]);
-		else if (redir_in[i][0] == 'H')
-			fd = redir_heredoc(&redir_in[i][1]);
 		if (fd < 0)
 			return (-1);
 	}
@@ -116,6 +125,10 @@ void	redir_handler(t_minishell *master)
 		if (iter->fd_out < 0)
 		{
 			ft_putstr_fd("Error opening outfile", 2);
+			master->prompt_status = false;
+		}
+		if (iter->fd_in < 0)
+		{
 			master->prompt_status = false;
 		}
 		iter = iter->next;
