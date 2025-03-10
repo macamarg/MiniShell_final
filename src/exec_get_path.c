@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:15:00 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/04 15:29:34 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:53:57 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static char	*absolute_path(char **cmd, t_minishell *master)
 		return (path);
 	}
 	perror(cmd[0]);
+	master->last_status = 126;
 	return (NULL);
 }
 
