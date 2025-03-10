@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/05 16:57:44 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:04:37 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,10 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 	temp = NULL;
 	line = ft_strdup("");
 	here_doc_signals_init();
-	while (1)
+	while (1 && mini_call()->here_status == 0)
 	{
 		temp = readline("> ");
-		if (!temp)
-			free_and_exit(line, fd_pipe[1]);
-		if (ft_strncmp(temp, eof, ft_strlen(eof) + 1) == 0)
+		if (!temp || ft_strncmp(temp, eof, ft_strlen(eof) + 1) == 0)
 		{
 			free(temp);
 			break ;
@@ -101,7 +99,7 @@ int	redir_heredoc(char *eof)
 		ft_putstr_fd("Fork failed!\n", 2);
 		return (-1);
 	}
-	ignore_signals_init();
+	here_doc_signals_parent();
 	if (pid == 0)
 		here_doc_child(eof, fd_pipe, quotes_flag);
 	else

@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:23:44 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 11:25:11 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:08:34 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,24 @@ void	here_doc_signals_init(void)
 	sigemptyset(&sa_int.sa_mask);
 	sa_int.sa_flags = SA_RESTART;
 	sa_int.sa_handler = here_handler;
+	sigaddset(&sa_int.sa_mask, SIGINT);
+	sigaction(SIGINT, &sa_int, 0);
+	sigemptyset(&sa_quit.sa_mask);
+	sa_quit.sa_flags = SA_RESTART;
+	sa_quit.sa_handler = SIG_IGN;
+	sigaddset(&sa_quit.sa_mask, SIGQUIT);
+	sigaction(SIGQUIT, &sa_quit, 0);
+}
+
+
+void	here_doc_signals_parent(void)
+{
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
+
+	sigemptyset(&sa_int.sa_mask);
+	sa_int.sa_flags = SA_RESTART;
+	sa_int.sa_handler = hereparent_handler;
 	sigaddset(&sa_int.sa_mask, SIGINT);
 	sigaction(SIGINT, &sa_int, 0);
 	sigemptyset(&sa_quit.sa_mask);

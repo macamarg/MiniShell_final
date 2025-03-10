@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 13:45:15 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:07:42 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ typedef struct s_minishell
 	char		*local_dir;
 	bool		prompt_status;
 	int			last_status;
+	int			here_status;
 	int			str_n;
 	t_token		**token_lst;
 	t_command	**cmd_lst;
@@ -155,11 +156,13 @@ void	prompt_signals_init(void);
 void	here_doc_signals_init(void);
 void	child_signals_init(void);
 void	ignore_signals_init(void);
+void	here_doc_signals_parent(void);
 
 //signals handle
 void	here_handler(int signum);
 void	child_handler(int signum);
 void	sigint_handler(int signum);
+void	hereparent_handler(int signum);
 
 //parse
 void	ft_parseline(t_minishell *master);
