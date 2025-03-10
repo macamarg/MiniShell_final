@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:11:26 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/03 11:58:13 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:25:40 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	ft_unset(t_command *cmd, t_minishell *master)
 		}
 		i++;
 	}
+	free_array(master->env);
 	master->env = env_cpy_arr(master->envp, env_count(master->envp));
 	return (0);
 }

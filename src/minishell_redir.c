@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:27:48 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 12:27:52 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:30:14 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,7 @@ void	redir_handler(t_minishell *master)
 			master->prompt_status = false;
 		}
 		if (iter->fd_in < 0)
-		{
 			master->prompt_status = false;
-		}
 		iter = iter->next;
 	}
 }

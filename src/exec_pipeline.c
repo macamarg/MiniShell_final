@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/10 12:03:50 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:47:48 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,18 @@ void	exec_pipeline(t_minishell *master, t_command *cmd_lst)
 	start = cmd_lst;
 	while (start)
 	{	
-		if(start->cmd)
+		if(start->cmd && !only_spaces(start->cmd[0]))
 		{
-		if (pipe(fd_pipe) < 0)
-			return (perror("pipe"));
-		pid = fork();
-		if (pid == -1)
-			return (perror("fork"));
-		if (pid == 0)
-			child_process(master, start, fd_pipe, prev_read_fd);
-		ignore_signals_init();
-		last_pid = pid;
-		parent_cleanup(&prev_read_fd, fd_pipe, start);
+			if (pipe(fd_pipe) < 0)
+				return (perror("pipe"));
+			pid = fork();
+			if (pid == -1)
+				return (perror("fork"));
+			if (pid == 0)
+				child_process(master, start, fd_pipe, prev_read_fd);
+			ignore_signals_init();
+			last_pid = pid;
+			parent_cleanup(&prev_read_fd, fd_pipe, start);
 		}
 		start = start->next;
 	}

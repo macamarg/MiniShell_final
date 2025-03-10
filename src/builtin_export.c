@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:01:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/05 12:08:35 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/10 14:24:43 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,9 @@ int	ft_export(t_command *cmd, t_minishell *master)
 		else
 			ft_execute_export(unquoted, master);
 	}
-		i = env_count(master->envp);
+	i = env_count(master->envp);
+	free(unquoted);
+	free_array(master->env);
 	master->env = env_cpy_arr(master->envp, i);
 	return (0);
 }

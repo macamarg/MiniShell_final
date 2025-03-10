@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/05 12:02:10 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/10 13:45:15 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ void	sigint_handler(int signum);
 
 //parse
 void	ft_parseline(t_minishell *master);
+bool	only_spaces(char*prompt);
 
 //tokenlst
 void	make_tokenlst(t_minishell *master);
