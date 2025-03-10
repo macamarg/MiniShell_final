@@ -84,7 +84,8 @@ t_env	*find_node(char *cmd, t_minishell *master, int env_flag)
 		while (!equal_flag
 			&& iter->env_var[h] != '=' && iter->env_var[h] != '\0')
 			h++;
-		if (!equal_flag && ft_strncmp(iter->env_var, cmd, h) == 0)
+		if (!equal_flag && ft_strlen(iter->env_var) == len_cmd
+			&&ft_strncmp(iter->env_var, cmd, h) == 0)
 			return (iter);
 		iter = iter->next;
 	}
