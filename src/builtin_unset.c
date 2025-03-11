@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:11:26 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/10 14:25:40 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:55:52 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_env	*find_node(char *cmd, t_minishell *master, int env_flag)
 		while (!equal_flag
 			&& iter->env_var[h] != '=' && iter->env_var[h] != '\0')
 			h++;
-		if (!equal_flag && ft_strlen(iter->env_var) == len_cmd
+		if (!equal_flag && h == len_cmd
 			&&ft_strncmp(iter->env_var, cmd, h) == 0)
 			return (iter);
 		iter = iter->next;
