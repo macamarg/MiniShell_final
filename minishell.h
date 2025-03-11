@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 17:07:42 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:35:14 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,7 @@ int 	ft_cd(t_command *cmd, t_minishell *master);
 int		ft_env(t_command *cmd, t_minishell *master);
 int		ft_unset(t_command *cmd, t_minishell *master);
 int		ft_export(t_command *cmd, t_minishell *master);
+void	ft_execute_export(char *cmd, t_minishell *master);
 void	ft_change_variable_value(t_minishell *master, char *var, int flag);
 int		check_if_var_exist(t_minishell *master, char *var, int flag);
 void	ft_export_error(char *cmd, t_minishell *master);

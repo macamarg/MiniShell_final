@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/11 11:15:13 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:46:19 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@
 	On success, zero is returned.  On error, -1 is returned, and
 		errno is set to indicate the error.
  */
+
+static void	change_env_vars(char* old_path, t_minishell *master)
+{
+	char	*env_new_path;
+	char	*env_old_path;
+
+	env_new_path = ft_strjoin("PWD=", master->local_dir);
+	ft_execute_export(env_new_path, master);
+	env_old_path = ft_strjoin("OLDPWD=", old_path);
+	ft_execute_export(env_old_path, master);
+	free(env_new_path);
+	free(env_old_path);
+}
+
 
 static char	*find_home(t_minishell *master)
 {
@@ -59,8 +73,7 @@ static int	cd_home(t_minishell *master)
 		perror("cd");
 		master->last_status = 1;
 	}
-	free(master->local_dir);
-	master->local_dir = path;
+	free(path);
 	return (master->last_status);
 }
 
@@ -82,6 +95,7 @@ static int	check_cd_errors(t_command *cmd, t_minishell *master)
 int	ft_cd(t_command *cmd, t_minishell *master)
 {
 	char	*path;
+	char	*old_path;
 	int		i;
 
 	path = NULL;
@@ -89,21 +103,24 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 	if (check_cd_errors(cmd, master) == 1)
 		return (1);
 	if (cmd->cmd[1] == NULL)
-	{
 		cd_home(master);
-		return (0);
-	}
-	path = ft_strdup(cmd->cmd[1]);
-	if (!path)
-		return (1);
-	if (chdir(path) == -1)
+	else
 	{
-		ft_putstr_fd("cd: ", 2);
-		perror(path);
-		free(path);
-		return (1);
+		path = ft_strdup(cmd->cmd[1]);
+		if (!path)
+			return (1);
+		if (chdir(path) == -1)
+		{
+			ft_putstr_fd("cd: ", 2);
+			perror(path);
+			free(path);
+			return (1);
+		}
 	}
+	old_path = ft_strdup(master->local_dir);
 	get_local_directory(master);
+	change_env_vars(old_path, master);
+	free(old_path);
 	free(path);
 	return (0);
 }

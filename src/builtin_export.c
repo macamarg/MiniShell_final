@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:01:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/11 10:40:07 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:35:01 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	ft_add_env_variable(t_minishell *master, char *var, int flag)
 	iter->next = new;
 }
 
-static void	ft_execute_export(char *cmd, t_minishell *master)
+void	ft_execute_export(char *cmd, t_minishell *master)
 {
 	if (check_if_var_exist(master, cmd, 0) == 0)
 	{

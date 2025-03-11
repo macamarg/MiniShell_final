@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/11 09:55:14 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:58:12 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,21 @@ static void	child_process(t_minishell *master, t_command *start, int *fd_pipe,
 	if (is_builtin(start->cmd[0]))
 	{
 		exec_builtin(start, master);
+		close_cmd_list_fds(*(master)->cmd_lst);
 		ft_clean_ms(master);
 		exit(master->last_status);
+	}
+	if (!start->cmd_path)
+	{
+		close_cmd_list_fds(*(master)->cmd_lst);
+		ft_clean_ms(master);
+		exit(127);
 	}
 	if (execve(start->cmd_path, start->cmd, master->env) == -1)
 	{
 		perror(start->cmd[0]);
+		close_cmd_list_fds(*(master)->cmd_lst);
+		ft_clean_ms(master);
 		exit(master->last_status);
 	}
 }
