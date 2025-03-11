@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:08:12 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 11:10:24 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:12:06 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,24 @@ t_token *next_token, int count)
 		next_token->prev = iter;
 }
 
+static bool only_expand(char *token)
+{
+	int		i;
+
+	i = 0;
+	if (token[0] == '"')
+		return (true);
+	while (token[i] != '\0')
+	{
+		if (ft_isalnum(token[i]) == 1 || token[i] == '_' || token[i] == '$')
+			i++;
+		else
+			return (true);
+	}
+	return (false);
+	
+}
+
 void	token_expansion(t_token *token_lst)
 {
 	char	**splited;
@@ -84,8 +102,8 @@ void	token_expansion(t_token *token_lst)
 
 	splited = NULL;
 	quotes = false;
-	if (token_lst->token[0] == '"')
-		quotes = true;
+	if (only_expand(token_lst->token))
+		quotes = true;	
 	token_lst->token = get_valueexp(token_lst->token, mini_call(), -1, 0);
 	i = wordcount(token_lst->token);
 	if (!quotes && i > 1)
