@@ -6,26 +6,25 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:10:50 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 17:03:32 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:05:17 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-bool only_spaces(char*prompt)
+bool	only_spaces(char*prompt)
 {
 	int	i;
 
 	i = 0;
-	while(prompt[i])
+	while (prompt[i])
 	{
-		if(prompt[i] != ' ')
-			return(0);
+		if (prompt[i] != ' ')
+			return (0);
 		i++;
 	}
 	return (1);
 }
-
 
 static bool	quotes_check(char *prompt)
 {
