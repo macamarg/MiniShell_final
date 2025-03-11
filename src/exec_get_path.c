@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:15:00 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/11 13:08:39 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:12:10 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static char	*not_absolute_path(char **cmd, t_minishell *master)
 
 	i = -1;
 	paths = get_paths(master);
-	if (paths == NULL)
-	{
+	if (!paths)
+	{	
 		error_cmdnfound(master, cmd);
 		return(NULL);
 	}

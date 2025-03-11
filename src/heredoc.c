@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/10 17:04:37 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:24:12 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ char	*rm_quotes_str(char *str)
 
 static void	free_and_exit(char *line, int fd_pipe)
 {
+	close(fd_pipe);
 	ft_clean_ms(mini_call());
 	free(line);
-	close(fd_pipe);
 	exit(0);
 }
 
@@ -57,7 +57,7 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 	char	*line;
 	char	*temp;
 
-	close(fd_pipe[0]);
+	close(fd_pipe[READ_END]);
 	line = NULL;
 	temp = NULL;
 	line = ft_strdup("");
@@ -76,8 +76,8 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 		line = ft_strjoin_free(line, "\n");
 		free(temp);
 	}
-	ft_putstr_fd(line, fd_pipe[1]);
-	free_and_exit(line, fd_pipe[1]);
+	ft_putstr_fd(line, fd_pipe[WRITE_END]);
+	free_and_exit(line, fd_pipe[WRITE_END]);
 }
 
 int	redir_heredoc(char *eof)
@@ -106,6 +106,6 @@ int	redir_heredoc(char *eof)
 	{
 		close(fd_pipe[1]);
 		waitpid(pid, NULL, 0);
-		return (fd_pipe[0]);
+		return (fd_pipe[READ_END]);
 	}
 }

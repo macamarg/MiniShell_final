@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:31:39 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/03 13:46:24 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:24:38 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	exec_other(t_command *cmd, t_minishell *master)
 	int	pid;
 
 	if (!cmd->cmd_path)
+	{
+		error_cmdnfound(master, cmd->cmd);
 		return (1);
+	}
 	pid = fork();
 	if (pid == -1)
 	{
@@ -55,7 +58,7 @@ int	exec_other(t_command *cmd, t_minishell *master)
 		{
 			perror(cmd->cmd[0]);
 			master->last_status = 127;
-			return (1);
+			exit (127);
 		}
 	}
 	else
