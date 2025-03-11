@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:15:32 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/11 10:49:41 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:42:24 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,12 @@ static int	class_find(char *token, int i)
 		return (REDIR_IN);
 	else if (token[0] == '|')
 		return (PIPE);
-	while (token[++i] != '\0')
-	{
-		if (token[i] == '\'')
-		{
-			while (token[++i] != '\0' && token[i] != '\'')
-				;
-		}
-		else if (token[i] == '$')
-			return (EXPAND);
-	}
-	return (STRING);
+	// while (token[++i] != '\0')
+	// {
+	// 	if (token[i] == '$')
+	// 		return (EXPAND);
+	// }
+	return (EXPAND);
 }
 
 static bool	syntax_pipe(t_token *iter)

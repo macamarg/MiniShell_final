@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_readline.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:46:44 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 14:21:59 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:45:04 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ void	ft_getprompt(t_minishell *master)
 		prompt_signals_init();
 		master->prompt = readline("shell> ");
 		if (!master->prompt)
-		{
-			ft_putstr_fd("exit\n", 1);
-			break ;
-		}
-		else if (master->prompt && *master->prompt)
+			master->prompt = ft_strdup("exit");
+		if (master->prompt && *master->prompt)
 		{
 			add_history(master->prompt);
 			ft_parseline(master);
