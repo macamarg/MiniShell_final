@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:02:52 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/03 11:19:22 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:18:14 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	get_local_directory(t_minishell *master)
 		buff = NULL;
 		buff = safe_malloc(sizeof(char) * size);
 	}
+	if (master->local_dir)
+		free(master->local_dir);
 	master->local_dir = buff;
 }
 
