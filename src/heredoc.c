@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/11 14:24:12 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:49:34 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 		line = ft_strjoin_free(line, "\n");
 		free(temp);
 	}
+	free(eof);
 	ft_putstr_fd(line, fd_pipe[WRITE_END]);
 	free_and_exit(line, fd_pipe[WRITE_END]);
 }
@@ -104,6 +105,7 @@ int	redir_heredoc(char *eof)
 		here_doc_child(eof, fd_pipe, quotes_flag);
 	else
 	{
+		free(eof);
 		close(fd_pipe[1]);
 		waitpid(pid, NULL, 0);
 		return (fd_pipe[READ_END]);
