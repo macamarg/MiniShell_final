@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:01:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/10 14:24:43 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:33:27 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,11 @@ int	ft_export(t_command *cmd, t_minishell *master)
 	{
 		unquoted = rm_quotes_str(cmd->cmd[i]);
 		if (!is_valid_variable(unquoted))
+		{
 			ft_export_error(unquoted, master);
+			free(unquoted);
+			return (1);
+		}
 		else
 			ft_execute_export(unquoted, master);
 	}
