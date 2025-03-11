@@ -43,7 +43,7 @@ static void	token_count(t_token **token_lst, t_count *cmd_count)
 	while (iter && iter->type != PIPE)
 	{
 		iter->token = quotes_rm(iter);
-		if (iter->type == EXPAND)
+		if (iter->type == EXPAND || iter->type == STRING)
 		{
 			token_expansion(iter);
 			//iter->token = get_valueexp(iter->token, mini_call(), -1, 0);

@@ -35,12 +35,12 @@ static int	class_find(char *token, int i)
 		return (REDIR_IN);
 	else if (token[0] == '|')
 		return (PIPE);
-	// while (token[++i] != '\0')
-	// {
-	// 	if (token[i] == '$')
-	// 		return (EXPAND);
-	// }
-	return (EXPAND);
+	while (token[++i] != '\0')
+	{
+		if (token[i] == '$')
+			return (EXPAND);
+	}
+	return (STRING);
 }
 
 static bool	syntax_pipe(t_token *iter)
