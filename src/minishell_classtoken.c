@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:15:32 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 12:19:40 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:49:41 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ static void	exitsyntax_err(void)
 
 static int	class_find(char *token, int i)
 {
-	bool	quotes;
-
-	quotes = false;
 	if (token[0] == '>' && token[1] == '>')
 		return (REDIR_OUTA);
 	else if (token[0] == '>')
@@ -38,11 +35,9 @@ static int	class_find(char *token, int i)
 		return (REDIR_IN);
 	else if (token[0] == '|')
 		return (PIPE);
-	if (token[0] == '"')
-		quotes = true;
 	while (token[++i] != '\0')
 	{
-		if (token[i] == '\'' && quotes == false)
+		if (token[i] == '\'')
 		{
 			while (token[++i] != '\0' && token[i] != '\'')
 				;
