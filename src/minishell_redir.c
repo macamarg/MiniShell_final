@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:27:48 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/11 14:23:12 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:32:00 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	redir_in(char **redir_in)
 				return (-1);
 		}
 	}
-	i = 0;
+	i = -1;
 	while (redir_in[++i])
 	{
 		if (redir_in[i][0] == 'I')
