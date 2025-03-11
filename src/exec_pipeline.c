@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/10 13:47:48 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 09:55:14 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,6 @@ void	wait_for_pipeline(t_minishell *master, int last_pid)
 	}
 }
 
-int	exec_builtin_pipeline(t_minishell *master, t_command *start, int *fd_pipe,
-							int prev_read_fd)
-{
-	if (start->order == FIRST && start->redir_in == NULL)
-		start->fd_in = STDIN_FILENO;
-	else if (start->redir_in == NULL)
-		start->fd_in = prev_read_fd;
-	if (start->order == LAST && start->redir_out == NULL)
-		start->fd_out = STDOUT_FILENO;
-	else if (start->redir_out == NULL)
-		start->fd_out = fd_pipe[WRITE_END];
-	return (exec_builtin(start, master));
-}
-
 static void	child_process(t_minishell *master, t_command *start, int *fd_pipe,
 							int prev_read_fd)
 {
@@ -64,7 +50,7 @@ static void	child_process(t_minishell *master, t_command *start, int *fd_pipe,
 		close(prev_read_fd);
 	if (is_builtin(start->cmd[0]))
 	{
-		exec_builtin_pipeline(master, start, fd_pipe, prev_read_fd);
+		exec_builtin(start, master);
 		ft_clean_ms(master);
 		exit(master->last_status);
 	}
