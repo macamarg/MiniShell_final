@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:01:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/11 10:33:27 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:40:07 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,9 @@ int	ft_export(t_command *cmd, t_minishell *master)
 		}
 		else
 			ft_execute_export(unquoted, master);
+		free(unquoted);
 	}
 	i = env_count(master->envp);
-	free(unquoted);
 	free_array(master->env);
 	master->env = env_cpy_arr(master->envp, i);
 	return (0);
