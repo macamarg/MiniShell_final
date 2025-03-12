@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/11 11:46:19 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:08:05 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	change_env_vars(char* old_path, t_minishell *master)
 {
 	char	*env_new_path;
 	char	*env_old_path;
-
+		
+	get_local_directory(master);
 	env_new_path = ft_strjoin("PWD=", master->local_dir);
 	ft_execute_export(env_new_path, master);
 	env_old_path = ft_strjoin("OLDPWD=", old_path);
@@ -96,10 +97,8 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 {
 	char	*path;
 	char	*old_path;
-	int		i;
 
 	path = NULL;
-	i = 0;
 	if (check_cd_errors(cmd, master) == 1)
 		return (1);
 	if (cmd->cmd[1] == NULL)
@@ -118,7 +117,6 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 		}
 	}
 	old_path = ft_strdup(master->local_dir);
-	get_local_directory(master);
 	change_env_vars(old_path, master);
 	free(old_path);
 	free(path);
