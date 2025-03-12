@@ -92,4 +92,5 @@ fclean: clean
 re: fclean all
 
 valgrind:
-	valgrind --track-fds=yes --show-leak-kinds=all --leak-check=full $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all\
+	--suppressions=readline.supp --track-fds=yes ./$(NAME)

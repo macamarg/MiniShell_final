@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:25 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/12 10:45:10 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:01:15 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	main(int argc, char **argv, char **envp)
 	t_minishell	*master;
 
 	master = NULL;
-	envp = NULL;
 	if (argc == 1)
 	{
 		master = mini_init(argv, envp);
