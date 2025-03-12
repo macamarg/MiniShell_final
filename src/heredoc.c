@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/11 14:49:34 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:30:28 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*rm_quotes_str(char *str)
 			new_str[j++] = str[i++];
 	}
 	new_str[j] = '\0';
+	free(str);
 	str = ft_strdup(new_str);
 	free(new_str);
 	return (str);
@@ -67,7 +68,8 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 		temp = readline("> ");
 		if (!temp || ft_strncmp(temp, eof, ft_strlen(eof) + 1) == 0)
 		{
-			free(temp);
+			if(temp)
+				free(temp);
 			break ;
 		}
 		if (!quotes_flag)
@@ -86,12 +88,17 @@ int	redir_heredoc(char *eof)
 	int		fd_pipe[2];
 	int		pid;
 	bool	quotes_flag;
+	char	*new_eof;
 
 	quotes_flag = false;
+	new_eof = ft_strdup(eof);
+	printf("new eof: %s\n", new_eof);
 	if (ft_strchr(eof, '\"') || ft_strchr(eof, '\''))
 		quotes_flag = true;
 	if (quotes_flag)
-		eof = rm_quotes_str(eof);
+		new_eof = rm_quotes_str(new_eof);
+	printf("unquoted: %s\n", new_eof);
+
 	if (pipe(fd_pipe) < 0)
 		return (-1);
 	pid = fork();
@@ -102,12 +109,12 @@ int	redir_heredoc(char *eof)
 	}
 	here_doc_signals_parent();
 	if (pid == 0)
-		here_doc_child(eof, fd_pipe, quotes_flag);
+		here_doc_child(new_eof, fd_pipe, quotes_flag);
 	else
 	{
-		free(eof);
-		close(fd_pipe[1]);
-		waitpid(pid, NULL, 0);
+		free (new_eof);
+		close (fd_pipe[1]);
+		waitpid (pid, NULL, 0);
 		return (fd_pipe[READ_END]);
 	}
 }

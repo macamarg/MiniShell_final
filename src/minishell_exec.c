@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:58:05 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/10 14:03:20 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:03:54 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,18 @@ void	exec_cmd(t_minishell *master, t_command *cmd)
 	else
 		exec_other((cmd), master);
 }
-
+/*
 int	check_cmd(t_minishell *master, t_command *cmd)
 {
 	if (!cmd->cmd_path)
 	{
-		error_cmdnfound(master, cmd->cmd);
+		//error_cmdnfound(master, cmd->cmd);
+		master->last_status = 127;
 		return (1);
 	}
 	return (0);
 }
-
+*/
 void	fill_cmd(t_minishell *master, t_command *cmd_lst)
 {
 	t_command	*current;
