@@ -57,11 +57,10 @@ static int	redir_in(char **redir_in)
 	{
 		if (redir_in[i][0] == 'H')
 		{
-			if (fd != STDIN_FILENO)
+			if (fd != STDIN_FILENO && fd != -1)
 				close(fd);
 			fd = STDIN_FILENO;
-
-				fd = redir_heredoc(&redir_in[i][1]);
+			fd = redir_heredoc(&redir_in[i][1]);
 			if (fd < 0)
 				return (-1);
 		}
@@ -71,7 +70,7 @@ static int	redir_in(char **redir_in)
 	{
 		if (redir_in[i][0] == 'I')
 		{
-			if (fd != STDIN_FILENO)
+			if (fd != STDIN_FILENO && fd != -1)
 				close(fd);
 			fd = STDIN_FILENO;
 			fd = check_infile(&redir_in[i][1]);
@@ -89,7 +88,7 @@ static int	redir_out(char **redir_out, int i)
 	fd = STDOUT_FILENO;
 	while (redir_out[++i])
 	{
-		if (i != 0 && fd != STDOUT_FILENO)
+		if (i != 0 && fd != STDOUT_FILENO && fd != -1)
 			close(fd);
 		fd = STDOUT_FILENO;
 		if (access(&redir_out[i][1], F_OK) != -1)

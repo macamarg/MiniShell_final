@@ -29,9 +29,9 @@ static void	child_handle_fd(t_command *cmd, t_minishell *master)
 {
 	dup2(cmd->fd_in, STDIN_FILENO);
 	dup2(cmd->fd_out, STDOUT_FILENO);
-	if (cmd->fd_in != STDIN_FILENO)
+	if (cmd->fd_in != STDIN_FILENO && cmd->fd_in != -1)
 		close(cmd->fd_in);
-	if (cmd->fd_out != STDOUT_FILENO)
+	if (cmd->fd_out != STDOUT_FILENO && cmd->fd_out != -1)
 		close(cmd->fd_out);
 }
 

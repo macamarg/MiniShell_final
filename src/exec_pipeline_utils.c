@@ -59,8 +59,8 @@ void	parent_cleanup(int *prev_read_fd, int *fd_pipe, t_command *start)
 	if (*prev_read_fd != -1)
 		close(*prev_read_fd);
 	*prev_read_fd = fd_pipe[READ_END];
-	if (start->fd_in != STDIN_FILENO)
+	if (start->fd_in != STDIN_FILENO && start->fd_in != -1)
 		close(start->fd_in);
-	if (start->fd_out != STDOUT_FILENO)
+	if (start->fd_out != STDOUT_FILENO && start->fd_out != -1)
 		close(start->fd_out);
 }

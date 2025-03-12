@@ -25,9 +25,9 @@ void	close_cmd_list_fds(t_command *cmd_lst)
 	current = cmd_lst;
 	while (current)
 	{
-		if (current->fd_in != STDIN_FILENO)
+		if (current->fd_in != STDIN_FILENO && current->fd_in != -1)
 			close(current->fd_in);
-		if (current->fd_out != STDOUT_FILENO)
+		if (current->fd_out != STDOUT_FILENO && current->fd_out != -1)
 			close(current->fd_out);
 		current = current ->next;
 	}
