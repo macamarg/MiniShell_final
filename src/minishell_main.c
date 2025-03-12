@@ -6,20 +6,18 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:25 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 17:03:10 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:45:10 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	env_cpy(t_minishell *master, char **envp)
+static void	env_cpy(t_minishell *master, char **envp, int i)
 {
-	int		i;
 	t_env	*tmp;
 	t_env	*iter;
 
-	i = -1;
-	while (envp[++i])
+	while (envp && envp[++i])
 	{
 		tmp = safe_malloc(sizeof(t_env));
 		tmp->env_var = ft_strdup(envp[i]);
@@ -36,7 +34,10 @@ static void	env_cpy(t_minishell *master, char **envp)
 			iter->next = tmp;
 		}
 	}
-	master->env = env_cpy_arr(master->envp, i);
+	if (envp)
+		master->env = env_cpy_arr(master->envp, i);
+	else
+		master->env = NULL;
 }
 
 //initi t_minishell
@@ -46,7 +47,7 @@ t_minishell	*mini_init(char **argv, char **envp)
 
 	master = mini_call();
 	master->envp = NULL;
-	env_cpy(master, envp);
+	env_cpy(master, envp, -1);
 	master->export = NULL;
 	sort_env(master, master->env);
 	master->argv = argv;
@@ -62,6 +63,7 @@ int	main(int argc, char **argv, char **envp)
 	t_minishell	*master;
 
 	master = NULL;
+	envp = NULL;
 	if (argc == 1)
 	{
 		master = mini_init(argv, envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:34:01 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/05 12:13:32 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/12 10:49:38 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	env_cpy_export(t_minishell *master, char **env)
 	t_env	*iter;
 
 	i = -1;
-	while (env[++i])
+	while (env && env[++i])
 	{
 		tmp = safe_malloc(sizeof(t_env));
 		tmp->env_var = ft_strdup(env[i]);
@@ -79,7 +79,7 @@ void	*sort_env(t_minishell *master, char **env)
 	if (!master->export)
 		env_cpy_export(master, master->env);
 	iter = master->export;
-	while (iter->next)
+	while (iter && iter->next)
 	{
 		if (ft_strcmp(iter->env_var, iter->next->env_var) > 0)
 		{
