@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:46:44 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/12 10:08:19 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:55:56 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,11 @@ void	ft_getprompt(t_minishell *master)
 			add_history(master->prompt);
 			ft_parseline(master);
 			if (master->prompt_status == true)
-			{
 				mini_exec(master);
-				ft_clean_token(master->token_lst);
-				master->token_lst = NULL;
-				close_cmd_list_fds(*(master->cmd_lst));
-				ft_clean_cmd(master->cmd_lst);
-			}
+			ft_clean_token(master->token_lst);
+			master->token_lst = NULL;
+			close_cmd_list_fds(*(master->cmd_lst));
+			ft_clean_cmd(master->cmd_lst);
 		}
 		free (master->prompt);
 		master->prompt = NULL;

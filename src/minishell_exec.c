@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:58:05 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/12 10:03:54 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:51:59 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ void	fill_cmd(t_minishell *master, t_command *cmd_lst)
 	current = cmd_lst;
 	while (current != NULL)
 	{
-		if(current->cmd && !only_spaces(current->cmd[0]))
+		if (current->cmd && !only_spaces(current->cmd[0]))
 		{
-		if (!is_builtin(current->cmd[0]))
-			current->cmd_path = get_cmdpath(master, current);
-		if (current->prev == NULL)
-			current->order = FIRST;
-		else if (current->next == NULL)
-			current->order = LAST;
-		else
-			current->order = MIDLE;
+			if (!is_builtin(current->cmd[0]))
+				current->cmd_path = get_cmdpath(master, current);
+			if (current->prev == NULL)
+				current->order = FIRST;
+			else if (current->next == NULL)
+				current->order = LAST;
+			else
+				current->order = MIDLE;
 		}
 		current = current->next;
 	}
