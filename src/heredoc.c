@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/12 10:30:28 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:55:52 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,10 @@ int	redir_heredoc(char *eof)
 
 	quotes_flag = false;
 	new_eof = ft_strdup(eof);
-	printf("new eof: %s\n", new_eof);
 	if (ft_strchr(eof, '\"') || ft_strchr(eof, '\''))
 		quotes_flag = true;
 	if (quotes_flag)
 		new_eof = rm_quotes_str(new_eof);
-	printf("unquoted: %s\n", new_eof);
-
 	if (pipe(fd_pipe) < 0)
 		return (-1);
 	pid = fork();

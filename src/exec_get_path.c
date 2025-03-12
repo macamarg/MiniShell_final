@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:15:00 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/12 10:02:02 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:54:21 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	**get_paths(t_minishell *master)
 
 	i = -1;
 	paths = NULL;
-	while (master->env[++i] != NULL)
+	while (master->env && master->env[++i] != NULL)
 	{
 		if (ft_strncmp(master->env[i], "PATH", 4) == 0)
 		{
