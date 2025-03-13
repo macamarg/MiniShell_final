@@ -19,7 +19,7 @@ static int	len_count(char *tmp)
 	i = 0;
 	//if (tmp[i] == '?')
 	//echo "$$HOME$USER" = /home/mcmarqsmcmarqs
-	if (tmp[i] == '?' || tmp[i] == '$')
+	if (tmp[i] == '?' || tmp[i] == '$' || ft_isdigit(tmp[i]) == 1)
 		i++;
 	else
 	{
