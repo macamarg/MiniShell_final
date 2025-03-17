@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 10:02:03 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:56:30 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ char	*rm_quotes_str(char *str)
 			end = findquotes(str, i);
 			i++;
 			while (i < end)
-			{
 				new_str[j++] = str[i++];
-			}
 			i++;
 		}
 		else
@@ -50,7 +48,7 @@ static void	free_and_exit(char *line, int fd_pipe)
 	close(fd_pipe);
 	ft_clean_ms(mini_call());
 	free(line);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)

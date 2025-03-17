@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:47:43 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/03 15:07:49 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:51:46 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,15 @@ void	handle_fd_last(t_minishell *master, t_command *start, int *fd_pipe,
 		dup2(start->fd_out, STDOUT_FILENO);
 }
 
-void	close_pipe(int *fd)
+void	ft_choose_handle(t_minishell *master, t_command *start,
+							int *fd_pipe, int prev_read_fd)
 {
-	close(fd[0]);
-	close(fd[1]);
+	if (start->order == FIRST)
+		handle_fd_first(master, start, fd_pipe, prev_read_fd);
+	else if (start->order == MIDLE)
+		handle_fd_middle(master, start, fd_pipe, prev_read_fd);
+	else
+		handle_fd_last(master, start, fd_pipe, prev_read_fd);
 }
 
 void	parent_cleanup(int *prev_read_fd, int *fd_pipe, t_command *start)

@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 13:17:31 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:07:40 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ bool			when_cpy(char *token, int i, int j);
 
 //redir
 void			ft_find_redir(t_minishell *master);
+int				check_infile(char *file);
 
 //clean
 void			ft_clean_ms(t_minishell *master);
@@ -218,6 +219,8 @@ void			exec_pipeline(t_minishell *master, t_command *cmd);
 void			close_pipe(int *fd);
 void			parent_cleanup(int *prev_read_fd, int *fd_pipe,
 					t_command *start);
+void	ft_choose_handle(t_minishell *master, t_command *start,
+					int *fd_pipe, int prev_read_fd);
 void			handle_fd_first(t_minishell *master, t_command *start,
 					int *fd_pipe, int prev_read_fd);
 void			handle_fd_middle(t_minishell *master, t_command *start,

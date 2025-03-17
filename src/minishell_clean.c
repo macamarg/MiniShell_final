@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:01:28 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 12:59:54 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:51:22 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 /*
 		Close all fds from a list of commands
 */
+
+void	close_pipe(int *fd)
+{
+	close(fd[0]);
+	close(fd[1]);
+}
 
 void	close_cmd_list_fds(t_command **cmd_lst)
 {

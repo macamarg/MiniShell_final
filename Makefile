@@ -22,6 +22,7 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/minishell_expand.c\
 	$(SRC_DIR)/minishell_expandutils.c\
 	$(SRC_DIR)/minishell_redir.c\
+	$(SRC_DIR)/minishell_redir_utils.c\
 	$(SRC_DIR)/minishell_cpy_envp.c\
 	$(SRC_DIR)/minishell_exec.c\
 	$(SRC_DIR)/exec_get_path.c\

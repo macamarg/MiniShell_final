@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_redir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:27:48 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 10:13:19 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:12:49 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,6 @@
 
 */
 
-static int	check_infile(char *file)
-{
-	if (access(file, F_OK) == -1)
-	{
-		printf("%s: No such infile and directory\n", file);
-		return (-1);
-	}
-	if (access(file, R_OK) == -1)
-	{
-		printf("%s: Permission denied\n", file);
-		return (-1);
-	}
-	return (open(file, O_RDONLY));
-}
 /*
 	c2r6s1% <case wc -l | wc
 	zsh: no such file or directory: case
@@ -46,25 +32,29 @@ static int	check_infile(char *file)
 		-case doesnt exist stop executin of cmd1
 */
 
-static int	redir_in(char **redir_in)
+static int	handle_heredoc(char **redir_in, int fd)
 {
 	int	i;
-	int	fd;
 
 	i = -1;
-	fd = STDIN_FILENO;
 	while (redir_in[++i])
 	{
 		if (redir_in[i][0] == 'H')
 		{
 			if (fd != STDIN_FILENO && fd != -1)
 				close(fd);
-			fd = STDIN_FILENO;
 			fd = redir_heredoc(&redir_in[i][1]);
 			if (fd < 0)
 				return (-1);
 		}
 	}
+	return (fd);
+}
+
+static int	handle_infile(char **redir_in, int fd)
+{
+	int	i;
+
 	i = -1;
 	while (redir_in[++i])
 	{
@@ -72,12 +62,23 @@ static int	redir_in(char **redir_in)
 		{
 			if (fd != STDIN_FILENO && fd != -1)
 				close(fd);
-			fd = STDIN_FILENO;
 			fd = check_infile(&redir_in[i][1]);
 			if (fd < 0)
 				return (-1);
 		}
 	}
+	return (fd);
+}
+
+static int	redir_in(char **redir_in)
+{
+	int	fd;
+
+	fd = STDIN_FILENO;
+	fd = handle_heredoc(redir_in, fd);
+	if (fd < 0)
+		return (-1);
+	fd = handle_infile(redir_in, fd);
 	return (fd);
 }
 
