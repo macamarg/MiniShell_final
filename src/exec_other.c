@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exec_other.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:31:39 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 10:19:17 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:23:10 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	error_exec(char *cmd)
+{
+	perror(cmd);
+	mini_call()->last_status = 127;
+	exit (127);
+}
 
 void	wait_for_child(t_minishell *master, int pid)
 {
@@ -22,7 +29,7 @@ void	wait_for_child(t_minishell *master, int pid)
 	else if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 		master->last_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
-		master->last_status = 128 + WTERMSIG(status); //neds testing
+		master->last_status = 128 + WTERMSIG(status);
 }
 
 static void	child_handle_fd(t_command *cmd, t_minishell *master)
@@ -55,11 +62,7 @@ int	exec_other(t_command *cmd, t_minishell *master)
 		child_signals_init();
 		child_handle_fd(cmd, master);
 		if (execve(cmd->cmd_path, cmd->cmd, master->env) == -1)
-		{
-			perror(cmd->cmd[0]);
-			master->last_status = 127;
-			exit (127);
-		}
+			error_exec(cmd->cmd[0]);
 	}
 	else
 		wait_for_child(master, pid);
