@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 12:59:17 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:17:31 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ void			print_envp(t_env *env);
 //exec
 void			mini_exec(t_minishell *master);
 char			*get_cmdpath(t_minishell *master, t_command *cmd);
+char			*check_paths (char **paths, char **cmd);
 char			*ft_strjoin_free(char *s1, char const *s2);
 int				is_builtin(char *command);
 void			exec_cmd(t_minishell *master, t_command *cmd);

@@ -6,11 +6,32 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:00:11 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/03 13:14:54 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:18:59 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+char	*check_paths(char **paths, char **cmd)
+{
+	int		i;
+	char	*path_test;
+
+	i = -1;
+	path_test = NULL;
+	while (paths && paths[++i])
+	{
+		path_test = ft_strjoin (paths[i], "/");
+		path_test = ft_strjoin_free(path_test, cmd[0]);
+		if (access(path_test, X_OK) == 0)
+		{
+			free_array(paths);
+			return (path_test);
+		}
+		free (path_test);
+	}
+	return (NULL);
+}
 
 void	error_cmdnfound(t_minishell*master, char **cmd)
 {

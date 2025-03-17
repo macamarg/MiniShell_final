@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_get_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:15:00 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 10:27:30 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:18:19 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,15 @@ static char	*not_absolute_path(char **cmd, t_minishell *master)
 		error_cmdnfound(master, cmd);
 		return (NULL);
 	}
-	path_test = NULL;
-	while (paths && paths[++i])
+	path_test = check_paths (paths, cmd);
+	if (path_test)
+		return (path_test);
+	else
 	{
-		path_test = ft_strjoin (paths[i], "/");
-		path_test = ft_strjoin_free(path_test, cmd[0]);
-		if (access(path_test, X_OK) == 0)
-		{
-			free_array(paths);
-			return (path_test);
-		}
-		free(path_test);
+		error_cmdnfound(master, cmd);
+		free_array(paths);
+		return (NULL);
 	}
-	error_cmdnfound(master, cmd);
-	free_array(paths);
-	return (NULL);
 }
 
 char	*get_cmdpath(t_minishell *master, t_command *cmd)
