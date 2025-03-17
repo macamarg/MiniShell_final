@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:10:50 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 16:00:48 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:06:52 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ void	ft_parseline(t_minishell *master)
 	if (only_spaces(master->prompt) || only_slash (master->prompt))
 	{
 		master->prompt_status = false;
-		master->token_status = false;
-		master->cmd_status = false;
 		return ;
 	}
 	else if (ft_syntax_check(master))

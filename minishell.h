@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 17:04:31 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:51:53 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,6 @@ typedef struct s_minishell
 	char		**argv;
 	char		*local_dir;
 	bool		prompt_status;
-	bool		token_status;
-	bool		cmd_status;
 	int			last_status;
 	int			here_status;
 	int			str_n;
@@ -161,7 +159,7 @@ void			here_doc_signals_parent(void);
 //signals handle
 void			here_handler(int signum);
 void			child_handler(int signum);
-void			sigin92t_handler(int signum);
+void			sigint_handler(int signum);
 void			hereparent_handler(int signum);
 
 //parse
@@ -208,8 +206,6 @@ t_minishell		*mini_call(void);
 ///env
 char			**env_cpy_arr(t_env *envp, int count);
 unsigned int	env_count(t_env *envp);
-void			print_env(char **env);
-void			print_envp(t_env *env);
 
 //exec
 void			mini_exec(t_minishell *master);
@@ -263,11 +259,5 @@ void			free_array(char **array);
 
 //error
 void			error_cmdnfound(t_minishell*master, char **cmd);
-
-//tests
-void			print_cmd_paths(t_command *cmd_lst);
-void			print_paths(char **paths);
-void			print_order(t_command *cmd_lst);
-void			print_fd(t_minishell *master);
 
 #endif

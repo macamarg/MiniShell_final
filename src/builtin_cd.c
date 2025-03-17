@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/17 16:58:03 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:51:37 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*find_home(t_minishell *master)
 			break ;
 		}
 	}
-	return(path);
+	return (path);
 }
 
 static int	cd_home(t_minishell *master)

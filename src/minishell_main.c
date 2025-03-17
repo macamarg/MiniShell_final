@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:25 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 15:50:50 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:24:12 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,12 @@ t_minishell	*mini_init(char **argv, char **envp)
 	env_cpy(master, envp, -1);
 	master->export = NULL;
 	sort_env(master, master->env);
+	add_shell_level(master);
 	master->argv = argv;
 	get_local_directory(master);
 	master->last_status = 0;
 	master->here_status = 0;
 	master->token_lst = NULL;
-	master->token_status = false;
-	master->cmd_status = false;
 	return (master);
 }
 
