@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:01:51 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/12 11:36:02 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:05:13 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	ft_execute_export(char *cmd, t_minishell *master)
 			ft_change_variable_value(master, cmd, 1);
 		ft_change_variable_value(master, cmd, 0);
 	}
+	master->last_status = EXIT_SUCCESS;
 }
 
 int	ft_export(t_command *cmd, t_minishell *master)
@@ -112,17 +113,12 @@ int	ft_export(t_command *cmd, t_minishell *master)
 		unquoted = ft_strdup(cmd->cmd[i]);
 		unquoted = rm_quotes_str(unquoted);
 		if (!is_valid_variable(unquoted))
-		{
 			ft_export_error(unquoted, master);
-			free(unquoted);
-			return (1);
-		}
 		else
 			ft_execute_export(unquoted, master);
 		free(unquoted);
 	}
-	i = env_count(master->envp);
 	free_array(master->env);
-	master->env = env_cpy_arr(master->envp, i);
-	return (0);
+	master->env = env_cpy_arr(master->envp, env_count(master->envp));
+	return (master->last_status);
 }
