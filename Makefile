@@ -15,7 +15,6 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/minishell_tokenlst.c\
 	$(SRC_DIR)/minishell_classtoken.c\
 	$(SRC_DIR)/minishell_exptoken.c\
-	$(SRC_DIR)/print_tokenlst.c\
 	$(SRC_DIR)/minishell_cmdstruc.c\
 	$(SRC_DIR)/minishell_cmd_utils.c\
 	$(SRC_DIR)/minishell_pathfill.c\
@@ -46,8 +45,6 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/shell_level.c\
 	$(SRC_DIR)/minishell_clean.c\
 	$(SRC_DIR)/minishell_free.c\
-	$(SRC_DIR)/test.c\
-	$(SRC_DIR)/print_tokenlst.c\
 	$(SRC_DIR)/minishell_signals.c\
 	$(SRC_DIR)/minishell_signhadle.c\
 
