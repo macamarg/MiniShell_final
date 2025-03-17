@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:25 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/12 11:01:15 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:00:52 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_minishell	*mini_init(char **argv, char **envp)
 	sort_env(master, master->env);
 	master->argv = argv;
 	get_local_directory(master);
-	//print_env(master->env);
 	master->last_status = 0;
 	master->here_status = 0;
 	return (master);
@@ -67,7 +66,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		master = mini_init(argv, envp);
 		ft_getprompt(master);
-		//ft_clean_ms(master);
 	}
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_other.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:31:39 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/12 11:45:36 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:19:17 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	exec_other(t_command *cmd, t_minishell *master)
 
 	if (!cmd->cmd_path)
 	{
-		//error_cmdnfound(master, cmd->cmd);
 		master->last_status = 127;
 		return (1);
 	}

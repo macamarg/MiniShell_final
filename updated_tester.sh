@@ -95,7 +95,8 @@ declare -A commands=(
         cat Makefile | grep minishell > output.txt
     "
 )
-
+# comp
+make
 # Function to run tests for a category
 run_tests_for_category() {
     local category="$1"
@@ -133,7 +134,10 @@ run_tests_for_category() {
 }
 
 # Function to run all tests
-run_tests() {
+run_tests() {      cat ./src/minishell_main.c
+    "
+    ["Environment Path"]="
+        ls
     echo "Starting minishell tests..."
 
     for category in "${!commands[@]}"; do

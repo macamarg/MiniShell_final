@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/12 10:55:52 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:02:03 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 		temp = readline("> ");
 		if (!temp || ft_strncmp(temp, eof, ft_strlen(eof) + 1) == 0)
 		{
-			if(temp)
+			if (temp)
 				free(temp);
 			break ;
 		}

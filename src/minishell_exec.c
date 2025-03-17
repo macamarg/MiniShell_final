@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:58:05 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/12 11:51:59 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:18:51 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	exec_cmd(t_minishell *master, t_command *cmd)
 	else
 		exec_other((cmd), master);
 }
+
 /*
 int	check_cmd(t_minishell *master, t_command *cmd)
 {
@@ -67,7 +68,7 @@ void	mini_exec(t_minishell *master)
 		fill_cmd(master, *(master->cmd_lst));
 		if ((*master->cmd_lst)->pipe == 0)
 		{
-			if((*master->cmd_lst)->cmd && (*master->cmd_lst)->cmd[0])
+			if ((*master->cmd_lst)->cmd && (*master->cmd_lst)->cmd[0])
 				exec_cmd(master, *(master->cmd_lst));
 		}
 		else

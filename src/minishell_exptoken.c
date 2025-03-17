@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:08:12 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/11 16:12:06 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:17:38 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_token *next_token, int count)
 		next_token->prev = iter;
 }
 
-static bool only_expand(char *token)
+static bool	only_expand(char *token)
 {
 	int		i;
 
@@ -91,7 +91,6 @@ static bool only_expand(char *token)
 			return (true);
 	}
 	return (false);
-	
 }
 
 void	token_expansion(t_token *token_lst)
@@ -103,7 +102,7 @@ void	token_expansion(t_token *token_lst)
 	splited = NULL;
 	quotes = false;
 	if (only_expand(token_lst->token))
-		quotes = true;	
+		quotes = true;
 	token_lst->token = get_valueexp(token_lst->token, mini_call(), -1, 0);
 	i = wordcount(token_lst->token);
 	if (!quotes && i > 1)

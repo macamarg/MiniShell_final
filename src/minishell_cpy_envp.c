@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cpy_envp.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:52:08 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/03 15:13:31 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:18:00 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ char	**env_cpy_arr(t_env *envp, int count)
 	iter = envp;
 	tmp = ft_calloc(count + 1, sizeof(char *));
 	i = -1;
-	//printf("\ncpy env arr\n");
 	while (iter)
 	{
 		tmp[++i] = ft_strdup(iter->env_var);
-		//printf("%s\n", iter->env_var);
 		iter = iter->next;
 	}
 	return (tmp);

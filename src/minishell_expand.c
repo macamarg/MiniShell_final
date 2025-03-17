@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:21:56 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 10:55:04 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:03:32 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static int	len_count(char *tmp)
 	int	i;
 
 	i = 0;
-	//if (tmp[i] == '?')
-	//echo "$$HOME$USER" = /home/mcmarqsmcmarqs
 	if (tmp[i] == '?' || tmp[i] == '$' || ft_isdigit(tmp[i]) == 1)
 		i++;
 	else
@@ -67,7 +65,7 @@ static char	**collectexp(char *token, t_minishell *master, int i, int j)
 	collect = (char **)ft_calloc(exp_count(token, 0, 0), sizeof(char *));
 	while (token[i] != '\0')
 	{
-		if (token[i] == '$' && token[i + 1] != '\0' && when_expand(token, i) == true)
+		if (token[i] == '$' && token[i + 1] != '\0' && when_expand(token, i))
 		{
 			if (j != i && when_cpy(token, i, j))
 				collect[++k] = collectprior(token, i, j);

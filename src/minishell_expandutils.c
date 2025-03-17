@@ -6,19 +6,19 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 10:45:55 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 11:07:05 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:07:25 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static bool if_copy(char *token, int k, int j, int i)
+static bool	if_copy(char *token, int k, int j, int i)
 {
 	int	p;
 	int	q;
 
 	p = -1;
-	if (token[j + k] != '"'  && token[j + k] != '\'')
+	if (token[j + k] != '"' && token[j + k] != '\'')
 		return (true);
 	while (token[++p] != '\0')
 	{
@@ -26,14 +26,13 @@ static bool if_copy(char *token, int k, int j, int i)
 		{
 			q = p;
 			p = findquotes(token, p);
-			if(token[q] != token[j + k] && (q < (j + k) && (j + k) < p))
+			if (token[q] != token[j + k] && (q < (j + k) && (j + k) < p))
 				return (true);
 			else if (p == (j + k) || q == (j + k))
 				return (false);
 		}
 	}
-	return false;
-
+	return (false);
 }
 
 char	*collectprior(char *token, int i, int j)
@@ -111,7 +110,7 @@ bool	when_expand(char *token, int i)
 				return (false);
 		}
 		if (j >= i)
-			break;
+			break ;
 	}
 	return (true);
 }

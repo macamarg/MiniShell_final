@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:33:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/11 14:41:25 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:00:01 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	token_count(t_token **token_lst, t_count *cmd_count)
 		if (iter->type == EXPAND || iter->type == STRING)
 		{
 			token_expansion(iter);
-			//iter->token = get_valueexp(iter->token, mini_call(), -1, 0);
 			if (iter->token != NULL)
 				iter->type = STRING;
 		}
@@ -83,7 +82,6 @@ static void	new_cmd(t_minishell *master, t_token **token_lst,
 	tmp->cmd = cmd_fill(token_lst, cmd_count->cmd_n, STRING);
 	tmp->redir_in = cmd_fill(token_lst, cmd_count->redirin_n, PATH_IN);
 	tmp->redir_out = cmd_fill(token_lst, cmd_count->redirout_n, PATH_OUT);
-	//print_cmdlst(tmp);
 	if (cmd_count->pipe == 1)
 		tmp->pipe = true;
 	if (*master->cmd_lst == NULL)
@@ -112,7 +110,6 @@ void	cmd_structfill(t_minishell *master)
 	while (iter)
 	{
 		count_init(&cmd_count);
-		//printf("%s\n", iter->token);
 		iter->token = quotes_rm(iter);
 		token_count(&iter, &cmd_count);
 		new_cmd(master, &iter, &cmd_count);
@@ -121,7 +118,6 @@ void	cmd_structfill(t_minishell *master)
 		if (iter && iter->type == PIPE)
 			iter = iter->next;
 	}
-	//print_cmdlst(*(master->cmd_lst));
 	redir_handler(master);
 }
 /*

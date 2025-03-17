@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:15:32 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/11 14:42:24 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:14:18 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	class_token(t_minishell *master)
 			token_stat = syntax_redir(iter);
 		if (!token_stat)
 			break ;
-		//printf("Token %s type %i\n", iter->token, iter->type);
 		iter = iter->next;
 	}
 }

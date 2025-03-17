@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:23:44 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 17:08:34 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:15:52 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	here_doc_signals_init(void)
 	sigaddset(&sa_quit.sa_mask, SIGQUIT);
 	sigaction(SIGQUIT, &sa_quit, 0);
 }
-
 
 void	here_doc_signals_parent(void)
 {

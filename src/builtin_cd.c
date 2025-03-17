@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/12 11:08:05 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:22:04 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 		errno is set to indicate the error.
  */
 
-static void	change_env_vars(char* old_path, t_minishell *master)
+static void	change_env_vars(char *old_path, t_minishell *master)
 {
 	char	*env_new_path;
 	char	*env_old_path;
-		
+
 	get_local_directory(master);
 	env_new_path = ft_strjoin("PWD=", master->local_dir);
 	ft_execute_export(env_new_path, master);
@@ -38,7 +38,6 @@ static void	change_env_vars(char* old_path, t_minishell *master)
 	free(env_new_path);
 	free(env_old_path);
 }
-
 
 static char	*find_home(t_minishell *master)
 {

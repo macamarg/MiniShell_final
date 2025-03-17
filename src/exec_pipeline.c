@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/11 14:26:08 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:05:43 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	exec_pipeline(t_minishell *master, t_command *cmd_lst)
 	prev_read_fd = -1;
 	start = cmd_lst;
 	while (start)
-	{	
-		if(start->cmd && !only_spaces(start->cmd[0]))
+	{
+		if (start->cmd && !only_spaces(start->cmd[0]))
 		{
 			if (pipe(fd_pipe) < 0)
 				return (perror("pipe"));
