@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:10:50 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/11 11:07:36 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:00:48 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-bool	only_spaces(char*prompt)
+bool	only_slash(char *prompt)
+{
+	int	i;
+
+	i = 0;
+	while (prompt[i])
+	{
+		if (prompt[i] != '/' && prompt[i] != ' ')
+			return (0);
+		i++;
+	}
+	ft_putstr_fd(prompt, 2);
+	ft_putstr_fd(": Is a directory\n", 2);
+	return (1);
+}
+
+bool	only_spaces(char *prompt)
 {
 	int	i;
 
@@ -86,12 +102,14 @@ static bool	ft_syntax_check(t_minishell *master)
 */
 void	ft_parseline(t_minishell *master)
 {
-	if (only_spaces(master->prompt))
+	if (only_spaces(master->prompt) || only_slash (master->prompt))
 	{
 		master->prompt_status = false;
+		master->token_status = false;
+		master->cmd_status = false;
 		return ;
 	}
-	if (ft_syntax_check(master))
+	else if (ft_syntax_check(master))
 	{
 		master->str_n = 0;
 		master->here_status = 0;

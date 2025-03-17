@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmdstruc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:33:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 10:00:01 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:54:28 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	cmd_init(t_command *tmp)
 	tmp->expand = NULL;
 	tmp->pipe = false;
 	tmp->order = -1;
+	tmp->fd_in = STDIN_FILENO;
+	tmp->fd_out = STDOUT_FILENO;
 }
 
 static void	token_count(t_token **token_lst, t_count *cmd_count)
@@ -107,6 +109,7 @@ void	cmd_structfill(t_minishell *master)
 	iter = *master->token_lst;
 	master->cmd_lst = safe_malloc(sizeof(t_command));
 	*master->cmd_lst = NULL;
+	master->cmd_status == true;
 	while (iter)
 	{
 		count_init(&cmd_count);

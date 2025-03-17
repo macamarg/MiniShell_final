@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 13:56:30 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:25:12 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ char	*rm_quotes_str(char *str)
 	}
 	new_str[j] = '\0';
 	free(str);
-	str = ft_strdup(new_str);
-	free(new_str);
-	return (str);
+	return (new_str);
 }
 
 static void	free_and_exit(char *line, int fd_pipe)
@@ -57,7 +55,6 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 	char	*temp;
 
 	close(fd_pipe[READ_END]);
-	line = NULL;
 	temp = NULL;
 	line = ft_strdup("");
 	here_doc_signals_init();
@@ -92,8 +89,12 @@ int	redir_heredoc(char *eof)
 	new_eof = ft_strdup(eof);
 	if (ft_strchr(eof, '\"') || ft_strchr(eof, '\''))
 		quotes_flag = true;
-	if (quotes_flag)
-		new_eof = rm_quotes_str(new_eof);
+	new_eof = rm_quotes_str(new_eof);
+	if (!new_eof)
+	{
+		ft_putstr_fd("Memory allocation failed\n", 2);
+		return (-1);
+	}
 	if (pipe(fd_pipe) < 0)
 		return (-1);
 	pid = fork();

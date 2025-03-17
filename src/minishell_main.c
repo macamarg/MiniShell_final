@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:25 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 13:01:57 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:50:50 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_minishell	*mini_init(char **argv, char **envp)
 	master->last_status = 0;
 	master->here_status = 0;
 	master->token_lst = NULL;
+	master->token_status = false;
+	master->cmd_status = false;
 	return (master);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:45:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 13:00:58 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:53:49 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_clean_token(t_token **token_lst)
 	t_token	*iter;
 	t_token	*iter2;
 
-	if (*token_lst != NULL && token_lst != NULL)
+	if (token_lst != NULL && *token_lst != NULL)
 	{
 		iter = *token_lst;
 		while (iter != NULL)
@@ -68,9 +68,9 @@ void	ft_clean_cmd(t_command **cmd_lst)
 	while (iter != NULL)
 	{
 		iter2 = iter;
-		ft_clean_cmdnode(iter);
 		iter = iter->next;
-		free (iter2);
+		ft_clean_cmdnode(iter2);
+		free(iter2);
 	}
 	*cmd_lst = NULL;
 	free (cmd_lst);

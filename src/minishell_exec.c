@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:58:05 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 10:18:51 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:35:06 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ void	exec_cmd(t_minishell *master, t_command *cmd)
 		exec_other((cmd), master);
 }
 
-/*
-int	check_cmd(t_minishell *master, t_command *cmd)
-{
-	if (!cmd->cmd_path)
-	{
-		//error_cmdnfound(master, cmd->cmd);
-		master->last_status = 127;
-		return (1);
-	}
-	return (0);
-}
-*/
 void	fill_cmd(t_minishell *master, t_command *cmd_lst)
 {
 	t_command	*current;

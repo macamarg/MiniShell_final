@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 14:07:40 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:50:03 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ typedef struct s_minishell
 	char		**argv;
 	char		*local_dir;
 	bool		prompt_status;
+	bool		token_status;
+	bool		cmd_status;
 	int			last_status;
 	int			here_status;
 	int			str_n;
@@ -219,7 +221,7 @@ void			exec_pipeline(t_minishell *master, t_command *cmd);
 void			close_pipe(int *fd);
 void			parent_cleanup(int *prev_read_fd, int *fd_pipe,
 					t_command *start);
-void	ft_choose_handle(t_minishell *master, t_command *start,
+void			ft_choose_handle(t_minishell *master, t_command *start,
 					int *fd_pipe, int prev_read_fd);
 void			handle_fd_first(t_minishell *master, t_command *start,
 					int *fd_pipe, int prev_read_fd);
