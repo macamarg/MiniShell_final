@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/12 11:24:13 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:56:52 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef enum e_class
 	ENDFILE,
 }	t_class;
 
-
 typedef enum e_type
 {
 	EXEC,
@@ -88,7 +87,6 @@ typedef struct s_split
 	char	*start;
 	int		end;
 }	t_split;
-
 
 typedef struct s_token
 {
@@ -149,40 +147,40 @@ typedef struct s_minishell
 }	t_minishell;
 
 //readline
-void	ft_getprompt(t_minishell *master);
+void			ft_getprompt(t_minishell *master);
 
 //signals
-void	prompt_signals_init(void);
-void	here_doc_signals_init(void);
-void	child_signals_init(void);
-void	ignore_signals_init(void);
-void	here_doc_signals_parent(void);
+void			prompt_signals_init(void);
+void			here_doc_signals_init(void);
+void			child_signals_init(void);
+void			ignore_signals_init(void);
+void			here_doc_signals_parent(void);
 
 //signals handle
-void	here_handler(int signum);
-void	child_handler(int signum);
-void	sigint_handler(int signum);
-void	hereparent_handler(int signum);
+void			here_handler(int signum);
+void			child_handler(int signum);
+void			sigint_handler(int signum);
+void			hereparent_handler(int signum);
 
 //parse
-void	ft_parseline(t_minishell *master);
-bool	only_spaces(char*prompt);
+void			ft_parseline(t_minishell *master);
+bool			only_spaces(char*prompt);
 
 //tokenlst
-void	make_tokenlst(t_minishell *master);
-void	print_tokenlst(t_token **token_lst);
-void	class_token(t_minishell *master);
-void    token_expansion(t_token *token_lst);
-int		findquotes(char *prompt, int i);
+void			make_tokenlst(t_minishell *master);
+void			print_tokenlst(t_token **token_lst);
+void			class_token(t_minishell *master);
+void			token_expansion(t_token *token_lst);
+int				findquotes(char *prompt, int i);
 
 //cmd struct
-void	cmd_structfill(t_minishell *master);
-void	print_cmdlst(t_command *cmd_lst);
-char	*quotes_rm(t_token *iter);
-void	redir_handler(t_minishell *master);
-int		redir_heredoc(char *eof);
-char	*rm_quotes_str(char *str);
-char	**cmd_fill(t_token **token_lst, int count, int t_class);
+void			cmd_structfill(t_minishell *master);
+void			print_cmdlst(t_command *cmd_lst);
+char			*quotes_rm(t_token *iter);
+void			redir_handler(t_minishell *master);
+int				redir_heredoc(char *eof);
+char			*rm_quotes_str(char *str);
+char			**cmd_fill(t_token **token_lst, int count, int t_class);
 
 //expand
 char			*std_exp(char *tmp, t_minishell *master, int i);
@@ -192,74 +190,76 @@ bool			when_expand(char *token, int i);
 bool			when_cpy(char *token, int i, int j);
 
 //redir
-void	ft_find_redir(t_minishell *master);
+void			ft_find_redir(t_minishell *master);
 
 //clean
-void	ft_clean_ms(t_minishell *master);
-void	ft_clean_env(t_env *envp, char **env);
-void	ft_clean_cmd(t_command **cmd_lst);
-void	ft_clean_token(t_token **token_lst);
+void			ft_clean_ms(t_minishell *master);
+void			ft_clean_env(t_env *envp, char **env);
+void			ft_clean_cmd(t_command **cmd_lst);
+void			ft_clean_token(t_token **token_lst);
 
 //minicall
-t_minishell	*mini_call(void);
+t_minishell		*mini_call(void);
 
 ///env
-char **env_cpy_arr(t_env *envp, int count);
+char			**env_cpy_arr(t_env *envp, int count);
 unsigned int	env_count(t_env *envp);
-void	print_env(char **env);
-void	print_envp(t_env *env);
+void			print_env(char **env);
+void			print_envp(t_env *env);
 
 //exec
-void	mini_exec(t_minishell *master);
-char	*get_cmdpath(t_minishell *master, t_command *cmd);
-char	*ft_strjoin_free(char *s1, char const *s2);
-int		is_builtin(char *command);
-void	exec_cmd(t_minishell *master, t_command *cmd);
-void	exec_pipeline(t_minishell *master, t_command *cmd);
-void	close_pipe(int *fd);
-void		parent_cleanup(int *prev_read_fd, int *fd_pipe, t_command *start);
-void	handle_fd_first(t_minishell *master, t_command *start, int *fd_pipe,
-							int prev_read_fd);
-void	handle_fd_middle(t_minishell *master, t_command *start, int *fd_pipe,
-							int prev_read_fd);
-void	handle_fd_last(t_minishell *master, t_command *start, int *fd_pipe,
-							int prev_read_fd);
-void	add_shell_level(t_minishell *master);
+void			mini_exec(t_minishell *master);
+char			*get_cmdpath(t_minishell *master, t_command *cmd);
+char			*ft_strjoin_free(char *s1, char const *s2);
+int				is_builtin(char *command);
+void			exec_cmd(t_minishell *master, t_command *cmd);
+void			exec_pipeline(t_minishell *master, t_command *cmd);
+void			close_pipe(int *fd);
+void			parent_cleanup(int *prev_read_fd, int *fd_pipe,
+					t_command *start);
+void			handle_fd_first(t_minishell *master, t_command *start,
+					int *fd_pipe, int prev_read_fd);
+void			handle_fd_middle(t_minishell *master, t_command *start,
+					int *fd_pipe, int prev_read_fd);
+void			handle_fd_last(t_minishell *master, t_command *start,
+					int *fd_pipe, int prev_read_fd);
+void			add_shell_level(t_minishell *master);
 
 //builtin
-int		exec_builtin(t_command *cmd, t_minishell *master);
-int		exec_other(t_command *cmd, t_minishell *master);
-int		ft_echo(t_command *cmd);
-int		ft_pwd(t_command *cmd, t_minishell *master);
-void	get_local_directory(t_minishell *master);
-int 	ft_cd(t_command *cmd, t_minishell *master);
-int		ft_env(t_command *cmd, t_minishell *master);
-int		ft_unset(t_command *cmd, t_minishell *master);
-int		ft_export(t_command *cmd, t_minishell *master);
-void	ft_execute_export(char *cmd, t_minishell *master);
-void	ft_change_variable_value(t_minishell *master, char *var, int flag);
-int		check_if_var_exist(t_minishell *master, char *var, int flag);
-void	ft_export_error(char *cmd, t_minishell *master);
-int		is_valid_variable(char *var);
-int		ft_exit(t_command *cmd, t_minishell *master);
-void	print_sorted_env(t_minishell *master);
-void	*sort_env(t_minishell *master, char **env);
+int				exec_builtin(t_command *cmd, t_minishell *master);
+int				exec_other(t_command *cmd, t_minishell *master);
+int				ft_echo(t_command *cmd);
+int				ft_pwd(t_command *cmd, t_minishell *master);
+void			get_local_directory(t_minishell *master);
+int				ft_cd(t_command *cmd, t_minishell *master);
+int				ft_env(t_command *cmd, t_minishell *master);
+int				ft_unset(t_command *cmd, t_minishell *master);
+int				ft_export(t_command *cmd, t_minishell *master);
+void			ft_execute_export(char *cmd, t_minishell *master);
+void			ft_change_variable_value(t_minishell *master, char *var,
+					int flag);
+int				check_if_var_exist(t_minishell *master, char *var, int flag);
+void			ft_export_error(char *cmd, t_minishell *master);
+int				is_valid_variable(char *var);
+int				ft_exit(t_command *cmd, t_minishell *master);
+void			print_sorted_env(t_minishell *master);
+void			*sort_env(t_minishell *master, char **env);
 
 //clean
-void	ft_clean_ms(t_minishell *master);
-void	ft_clean_env(t_env *envp, char **env);
-void	ft_clean_cmd(t_command **cmd_lst);
-void	ft_clean_token(t_token **token_lst);
-void	close_cmd_list_fds(t_command *cmd_lst);
-void	free_array(char **array);
+void			ft_clean_ms(t_minishell *master);
+void			ft_clean_env(t_env *envp, char **env);
+void			ft_clean_cmd(t_command **cmd_lst);
+void			ft_clean_token(t_token **token_lst);
+void			close_cmd_list_fds(t_command *cmd_lst);
+void			free_array(char **array);
 
 //error
-void	error_cmdnfound(t_minishell*master, char **cmd);
+void			error_cmdnfound(t_minishell*master, char **cmd);
 
 //tests
-void	print_cmd_paths(t_command *cmd_lst);
-void	print_paths(char **paths);
-void	print_order(t_command *cmd_lst);
-void	print_fd(t_minishell *master);
+void			print_cmd_paths(t_command *cmd_lst);
+void			print_paths(char **paths);
+void			print_order(t_command *cmd_lst);
+void			print_fd(t_minishell *master);
 
 #endif

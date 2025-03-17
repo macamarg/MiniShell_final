@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:26:12 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/10 17:07:23 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:47:03 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	hereparent_handler(int signum)
 	if (signum == SIGQUIT)
 		master->last_status = 131;
 }
-
 
 //status change and then child/exec will handle signal acordingly
 void	child_handler(int signum)
