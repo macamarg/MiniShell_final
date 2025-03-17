@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 15:50:03 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:22:08 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ void			print_cmdlst(t_command *cmd_lst);
 char			*quotes_rm(t_token *iter);
 void			redir_handler(t_minishell *master);
 int				redir_heredoc(char *eof);
+int				heredoc_error(char *msg, char *new_eof);
 char			*rm_quotes_str(char *str);
 char			**cmd_fill(t_token **token_lst, int count, int t_class);
 

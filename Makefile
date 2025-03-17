@@ -38,6 +38,7 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/builtin_export_utils.c\
 	$(SRC_DIR)/builtin_exit.c\
 	$(SRC_DIR)/heredoc.c\
+	$(SRC_DIR)/heredoc_utils.c\
 	$(SRC_DIR)/sort_env.c\
 	$(SRC_DIR)/exec_other.c\
 	$(SRC_DIR)/exec_pipeline.c\

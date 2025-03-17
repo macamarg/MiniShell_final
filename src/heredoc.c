@@ -6,11 +6,18 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 14:25:12 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:21:39 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	hd_parent_cleanup(char *new_eof, int fd, int pid)
+{
+	free (new_eof);
+	close (fd);
+	waitpid (pid, NULL, 0);
+}
 
 char	*rm_quotes_str(char *str)
 {
@@ -91,26 +98,18 @@ int	redir_heredoc(char *eof)
 		quotes_flag = true;
 	new_eof = rm_quotes_str(new_eof);
 	if (!new_eof)
-	{
-		ft_putstr_fd("Memory allocation failed\n", 2);
-		return (-1);
-	}
+		return (heredoc_error("Memory allocation failed", new_eof));
 	if (pipe(fd_pipe) < 0)
 		return (-1);
 	pid = fork();
 	if (pid < 0)
-	{
-		ft_putstr_fd("Fork failed!\n", 2);
-		return (-1);
-	}
+		return (heredoc_error("Fork failled", new_eof));
 	here_doc_signals_parent();
 	if (pid == 0)
 		here_doc_child(new_eof, fd_pipe, quotes_flag);
 	else
 	{
-		free (new_eof);
-		close (fd_pipe[1]);
-		waitpid (pid, NULL, 0);
+		hd_parent_cleanup(new_eof, fd_pipe[1], pid);
 		return (fd_pipe[READ_END]);
 	}
 }
