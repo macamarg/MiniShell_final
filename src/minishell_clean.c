@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_clean.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:01:28 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/08 11:03:13 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:59:54 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 		Close all fds from a list of commands
 */
 
-void	close_cmd_list_fds(t_command *cmd_lst)
+void	close_cmd_list_fds(t_command **cmd_lst)
 {
 	t_command	*current;
 
-	if (!cmd_lst)
+	if (!*cmd_lst || !cmd_lst)
 		return ;
-	current = cmd_lst;
+	current = *cmd_lst;
 	while (current)
 	{
 		if (current->fd_in != STDIN_FILENO && current->fd_in != -1)

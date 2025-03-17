@@ -30,6 +30,7 @@ SRC = $(SRC_DIR)/minishell_main.c\
 	$(SRC_DIR)/builtin_pwd.c\
 	$(SRC_DIR)/builtin_echo.c\
 	$(SRC_DIR)/builtin_cd.c\
+	$(SRC_DIR)/builtin_cd_utils.c\
 	$(SRC_DIR)/builtin_env.c\
 	$(SRC_DIR)/builtin_unset.c\
 	$(SRC_DIR)/builtin_export.c\

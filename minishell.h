@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 10:56:52 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:59:17 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ int				ft_echo(t_command *cmd);
 int				ft_pwd(t_command *cmd, t_minishell *master);
 void			get_local_directory(t_minishell *master);
 int				ft_cd(t_command *cmd, t_minishell *master);
+void			ft_error_cd(char *path);
 int				ft_env(t_command *cmd, t_minishell *master);
 int				ft_unset(t_command *cmd, t_minishell *master);
 int				ft_export(t_command *cmd, t_minishell *master);
@@ -250,7 +251,7 @@ void			ft_clean_ms(t_minishell *master);
 void			ft_clean_env(t_env *envp, char **env);
 void			ft_clean_cmd(t_command **cmd_lst);
 void			ft_clean_token(t_token **token_lst);
-void			close_cmd_list_fds(t_command *cmd_lst);
+void			close_cmd_list_fds(t_command **cmd_lst);
 void			free_array(char **array);
 
 //error

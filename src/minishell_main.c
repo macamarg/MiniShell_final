@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:25 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 10:00:52 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:01:57 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_minishell	*mini_init(char **argv, char **envp)
 	get_local_directory(master);
 	master->last_status = 0;
 	master->here_status = 0;
+	master->token_lst = NULL;
 	return (master);
 }
 

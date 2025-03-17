@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/17 10:22:04 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:56:57 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,7 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 			return (1);
 		if (chdir(path) == -1)
 		{
-			ft_putstr_fd("cd: ", 2);
-			perror(path);
-			free(path);
+			ft_error_cd(path);
 			return (1);
 		}
 	}
