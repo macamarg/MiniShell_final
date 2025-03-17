@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 16:21:39 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:59:17 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ int	redir_heredoc(char *eof)
 	if (pid == 0)
 		here_doc_child(new_eof, fd_pipe, quotes_flag);
 	else
-	{
 		hd_parent_cleanup(new_eof, fd_pipe[1], pid);
-		return (fd_pipe[READ_END]);
-	}
+	return (fd_pipe[READ_END]);
 }

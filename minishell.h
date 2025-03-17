@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 16:22:08 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:00:11 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void			here_doc_signals_parent(void);
 //signals handle
 void			here_handler(int signum);
 void			child_handler(int signum);
-void			sigint_handler(int signum);
+void			sigin92t_handler(int signum);
 void			hereparent_handler(int signum);
 
 //parse
@@ -251,7 +251,7 @@ void			ft_export_error(char *cmd, t_minishell *master);
 int				is_valid_variable(char *var);
 int				ft_exit(t_command *cmd, t_minishell *master);
 void			print_sorted_env(t_minishell *master);
-void			*sort_env(t_minishell *master, char **env);
+void			sort_env(t_minishell *master, char **env);
 
 //clean
 void			ft_clean_ms(t_minishell *master);

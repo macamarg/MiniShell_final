@@ -59,9 +59,7 @@ WFLAGS = -Wall -Wextra -Werror
 
 OPT = -g
 
-CC = gcc
-#TODO gcc - cc because windows
-#-pthread => copile with POSIX threads library
+CC = cc
 
 .PHONY: all bonus clean fclean re valgrind
 

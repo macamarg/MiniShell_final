@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:34:01 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/12 10:49:38 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:59:55 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	env_cpy_export(t_minishell *master, char **env)
 	}
 }
 
-void	*sort_env(t_minishell *master, char **env)
+void	sort_env(t_minishell *master, char **env)
 {
 	t_env	*export;
 	t_env	*iter;
