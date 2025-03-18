@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:07:09 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 17:51:53 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:23:34 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ char			*quotes_rm(t_token *iter);
 void			redir_handler(t_minishell *master);
 int				redir_heredoc(char *eof);
 int				heredoc_error(char *msg, char *new_eof);
+char			*heredoc_join(char *line, char *temp);
 char			*rm_quotes_str(char *str);
 char			**cmd_fill(t_token **token_lst, int count, int t_class);
 

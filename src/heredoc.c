@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 16:59:17 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:22:37 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void	here_doc_child(char *eof, int *fd_pipe, bool quotes_flag)
 		}
 		if (!quotes_flag)
 			temp = get_valueexp(temp, mini_call(), -1, 0);
-		line = ft_strjoin_free(line, temp);
-		line = ft_strjoin_free(line, "\n");
+		line = heredoc_join(line, temp);
 		free(temp);
 	}
 	free(eof);
-	ft_putstr_fd(line, fd_pipe[WRITE_END]);
+	if (mini_call()->here_status == 0)
+		ft_putstr_fd(line, fd_pipe[WRITE_END]);
 	free_and_exit(line, fd_pipe[WRITE_END]);
 }
 
