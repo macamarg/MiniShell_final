@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 17:07:19 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:55:43 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	new_token(t_minishell *master, char *prompt)
 	tmp->token = safe_malloc(end + 1);
 	ft_strlcpy(tmp->token, prompt, end + 1);
 	tmp->next = NULL;
-	tmp->next = NULL;
+	tmp->prev = NULL;
 	add_tokenback(master->token_lst, tmp);
 	return (end);
 }

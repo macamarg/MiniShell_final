@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:08:12 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 17:10:52 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:30:35 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	token_expansion(t_token *token_lst)
 
 	splited = NULL;
 	quotes = false;
+	if(token_lst->prev && token_lst->prev->type == HEREDOC)
+		return ;
 	if (only_expand(token_lst->token))
 		quotes = true;
 	token_lst->token = get_valueexp(token_lst->token, mini_call(), -1, 0);
