@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:34:01 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 16:59:55 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:29:31 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,7 @@ void	print_sorted_env(t_minishell *master)
 		{
 			ft_putchar_fd('=', 1);
 			i++;
-			if (iter->env_var[i] != '\0')
-				ft_putchar_fd('"', 1);
+			ft_putchar_fd('"', 1);
 			while (iter->env_var[i] != '\0')
 				ft_putchar_fd(iter->env_var[i++], 1);
 			ft_putchar_fd('"', 1);

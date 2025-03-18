@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:31:39 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 15:31:23 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:24:19 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 static void	error_exec(char *cmd)
 {
 	perror(cmd);
-	mini_call()->last_status = 127;
-	exit (127);
+	mini_call()->last_status = 126;
+	ft_clean_ms(mini_call());
+	exit (126);
 }
 
 void	wait_for_child(t_minishell *master, int pid)

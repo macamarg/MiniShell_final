@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/17 15:57:43 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:26:22 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	pipe_clean_and_exit(t_minishell *master, int exit_status)
 {
 	close_cmd_list_fds(master->cmd_lst);
 	ft_clean_ms(master);
-	exit(exit_status);
+	exit(126);
 }
 
 void	wait_for_pipeline(t_minishell *master, int last_pid)
