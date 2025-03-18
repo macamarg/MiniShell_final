@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:12:30 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/18 13:22:37 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:04:17 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*rm_quotes_str(char *str)
 static void	free_and_exit(char *line, int fd_pipe)
 {
 	close(fd_pipe);
+	close_cmd_list_fds(mini_call()->cmd_lst);
 	ft_clean_ms(mini_call());
 	free(line);
 	exit(EXIT_SUCCESS);

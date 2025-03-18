@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:01:28 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 13:51:22 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:04:00 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	close_cmd_list_fds(t_command **cmd_lst)
 {
 	t_command	*current;
 
-	if (!*cmd_lst || !cmd_lst)
+	if (!cmd_lst || !*cmd_lst)
 		return ;
 	current = *cmd_lst;
 	while (current)
