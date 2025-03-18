@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:58:05 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/17 15:35:06 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:05:33 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	fill_cmd(t_minishell *master, t_command *cmd_lst)
 
 void	mini_exec(t_minishell *master)
 {
+	master->last_status = 0;
 	if (!master->cmd_lst || !(*master->cmd_lst))
 		return ;
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_tokenlst.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:36:13 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 15:51:39 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:07:19 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	make_tokenlst(t_minishell *master)
 	i = 0;
 	master->token_lst = safe_malloc(sizeof(t_token));
 	*master->token_lst = NULL;
-	master->token_status = true;
 	while (master->prompt[i] != '\0')
 	{
 		while (master->prompt[i] == ' ')

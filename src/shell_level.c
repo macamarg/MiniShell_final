@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:19:58 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/10 14:30:54 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:13:51 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	add_shell_level(t_minishell *master)
 	char	*str_shlvl;
 	t_env	*iter;
 
+	if(!master->envp)
+		return ;
 	shlvl = find_shell_level(master) + 1;
 	str_shlvl = ft_itoa(shlvl);
 	new_shlvl = ft_strjoin("SHLVL=", str_shlvl);

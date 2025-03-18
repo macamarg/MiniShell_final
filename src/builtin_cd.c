@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/17 16:58:03 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:04:02 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*find_home(t_minishell *master)
 
 	i = -1;
 	path = NULL;
-	while (master->env[++i])
+	while (master->env && master->env[++i])
 	{
 		if (ft_strlen(master->env[i]) > 5
 			&& ft_strncmp(master->env[i], "HOME=", 5) == 0)
@@ -55,7 +55,7 @@ static char	*find_home(t_minishell *master)
 			break ;
 		}
 	}
-	return(path);
+	return (path);
 }
 
 static int	cd_home(t_minishell *master)
@@ -102,17 +102,17 @@ int	ft_cd(t_command *cmd, t_minishell *master)
 	if (check_cd_errors(cmd, master) == 1)
 		return (1);
 	if (cmd->cmd[1] == NULL)
-		cd_home(master);
-	else
 	{
-		path = ft_strdup(cmd->cmd[1]);
-		if (!path)
-			return (1);
-		if (chdir(path) == -1)
-		{
-			ft_error_cd(path);
-			return (1);
-		}
+		cd_home(master);
+		return (master->last_status);
+	}
+	path = ft_strdup(cmd->cmd[1]);
+	if (!path)
+		return (1);
+	if (chdir(path) == -1)
+	{
+		ft_error_cd(path);
+		return (1);
 	}
 	old_path = ft_strdup(master->local_dir);
 	change_env_vars(old_path, master);

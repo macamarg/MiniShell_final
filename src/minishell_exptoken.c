@@ -6,7 +6,7 @@
 /*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:08:12 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/17 10:17:38 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:10:52 by macamarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	wordcount(char *token)
 	return (count);
 }
 
-static void	*new_expandtoken(char *str, t_token *token_lst)
+static void	new_expandtoken(char *str, t_token *token_lst)
 {
 	int		len;
 	t_token	*tmp_token;
