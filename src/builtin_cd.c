@@ -61,6 +61,7 @@ static char	*find_home(t_minishell *master)
 static int	cd_home(t_minishell *master)
 {
 	char	*path;
+	char	*old_path;
 
 	path = find_home(master);
 	if (!path)
@@ -74,7 +75,15 @@ static int	cd_home(t_minishell *master)
 		perror("cd");
 		master->last_status = 1;
 	}
-	free(path);
+	else
+	{
+		old_path = ft_strdup(master->local_dir);
+		change_env_vars(old_path, master);
+	}
+	if (path)
+		free(path);
+	if(old_path)
+		free(old_path);
 	return (master->last_status);
 }
 
