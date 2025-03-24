@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:27:48 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/18 14:49:09 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:26:20 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ static int	handle_heredoc(char **redir_in, int fd)
 	return (fd);
 }
 
-static int	handle_infile(char **redir_in, int fd)
+//i = -1; fd = STDIN_FILENO;
+static int	handle_infile(char **redir_in, int fd_i, int i, int fd)
 {
-	int	i;
-
-	i = -1;
 	while (redir_in[++i])
 	{
 		if (redir_in[i][0] == 'I')
@@ -66,6 +64,17 @@ static int	handle_infile(char **redir_in, int fd)
 			if (fd < 0)
 				return (-1);
 		}
+	}
+	if (fd_i != STDIN_FILENO && (i - 1) >= 0 && redir_in[i - 1][0] == 'H')
+	{
+		if (fd != STDIN_FILENO && fd != -1)
+			close(fd);
+		fd = fd_i;
+	}
+	if (fd_i != STDIN_FILENO && (i - 1) >= 0 && redir_in[i - 1][0] != 'H')
+	{
+		if (fd_i != STDIN_FILENO && fd_i != -1)
+			close(fd_i);
 	}
 	return (fd);
 }
@@ -78,7 +87,7 @@ static int	redir_in(char **redir_in)
 	fd = handle_heredoc(redir_in, fd);
 	if (fd < 0)
 		return (-1);
-	fd = handle_infile(redir_in, fd);
+	fd = handle_infile(redir_in, fd, -1, STDIN_FILENO);
 	return (fd);
 }
 
