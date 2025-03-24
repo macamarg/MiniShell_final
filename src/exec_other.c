@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:31:39 by jrocha-f          #+#    #+#             */
-/*   Updated: 2025/03/18 14:24:19 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:13:46 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	exec_other(t_command *cmd, t_minishell *master)
 
 	if (!cmd->cmd_path)
 	{
-		master->last_status = 127;
+		if (master->last_status != 126)
+			master->last_status = 127;
 		return (1);
 	}
 	pid = fork();
