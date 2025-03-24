@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exptoken.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:08:12 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/18 13:30:35 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:36:32 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	token_expansion(t_token *token_lst)
 
 	splited = NULL;
 	quotes = false;
-	if(token_lst->prev && token_lst->prev->type == HEREDOC)
+	if (token_lst->prev && token_lst->prev->type == HEREDOC)
 		return ;
 	if (only_expand(token_lst->token))
 		quotes = true;

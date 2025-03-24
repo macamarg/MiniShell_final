@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_classtoken.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macamarg <macamarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 11:15:32 by macamarg          #+#    #+#             */
-/*   Updated: 2025/03/18 13:32:36 by macamarg         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:36:15 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static bool	syntax_redir(t_token *iter)
 	if (iter->next == NULL)
 		stat = false;
 	else if (iter->type == HEREDOC && (iter->next->type == STRING
-		|| iter->next->type == EXPAND))
+			|| iter->next->type == EXPAND))
 		iter->next->type = PATH_IN;
 	else if (iter->type == REDIR_IN && iter->next->type == STRING)
 		iter->next->type = PATH_IN;

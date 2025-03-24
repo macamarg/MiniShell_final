@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:59:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/18 14:56:10 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:35:42 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ static void	child_process(t_minishell *master, t_command *start, int *fd_pipe,
 							int prev_read_fd)
 {
 	ft_choose_handle (master, start, fd_pipe, prev_read_fd);
-	//if (start->fd_in != STDIN_FILENO)
-	//	close(start->fd_in);
-	//if (start->fd_out != STDOUT_FILENO)
-	//	close(start->fd_out);
 	close_pipe(fd_pipe);
 	if (prev_read_fd != -1)
 		close(prev_read_fd);
