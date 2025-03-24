@@ -6,7 +6,7 @@
 /*   By: jrocha-f <jrocha-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:03:45 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/03 13:40:13 by jrocha-f         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:54:02 by jrocha-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void	error_exit(t_command *cmd, t_minishell *master)
 {
-	ft_putstr_fd("exit\nminishell: exit:", 2);
+	ft_putstr_fd("minishell: exit:", 2);
 	ft_putstr_fd(cmd->cmd[1], 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
 	master->last_status = 2;
